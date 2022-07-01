@@ -22,11 +22,11 @@
   },
   "homepage": "https://github.com/GitPaulo/GitPaulo.github.io#readme",
   "dependencies": {
-    "normalize.css": "^8.0.1"
+    "normalize.css": "^8.0.1",
+    "pdfjs-dist": "^2.14.305"
   },
   "devDependencies": {
     "webpack": "^5.11.1",
-    "webpack-cli": "^4.3.1",
-    "pdfjs-dist": "../../node_modules/pdfjs-dist"
+    "webpack-cli": "^4.3.1"
   }
 }
