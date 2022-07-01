@@ -4,7 +4,8 @@
   "description": "My website",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,11 @@
   },
   "homepage": "https://github.com/GitPaulo/GitPaulo.github.io#readme",
   "dependencies": {
-    "normalize.css": "^8.0.1",
-    "pdfjs-dist": "^2.2.228"
+    "normalize.css": "^8.0.1"
+  },
+  "devDependencies": {
+    "webpack": "^5.11.1",
+    "webpack-cli": "^4.3.1",
+    "pdfjs-dist": "../../node_modules/pdfjs-dist"
   }
 }
