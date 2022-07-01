@@ -1,21 +1,3 @@
-#canvas_wrap {
-  text-align: center;
-}
-
-#resume_canvas {
-  border: 1px solid black;
-}
-
-#button_area {
-  margin-bottom: 10px;
-}
-
-#controls {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 
 html {
@@ -37,6 +19,24 @@ body {
   justify-content: center;
   align-items: center;
   display: flex;
+}
+
+#canvas_wrap {
+  text-align: center;
+}
+
+#resume_canvas {
+  border: 1px solid black;
+}
+
+#button_area {
+  margin-bottom: 10px;
+}
+
+#controls {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /*
