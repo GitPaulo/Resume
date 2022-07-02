@@ -17,13 +17,16 @@ loadingTask.promise.then((_pdf) => {
       document.getElementById("btn_label").innerText = "📱 GitHub";
     } else {
       renderDocument(page, (scale = BROWSER_SCALE));
+      document.getElementById("controls").style.border = "2px solid red";
       Toastify({
-        text: "👋 Hey there, use zoom buttons!",
-        duration: 2000,
-        close: true,
+        text: "👋 Hey there, use the zoom buttons!",
+        duration: 2500,
         gravity: "top", // `top` or `bottom`
         position: "center", // `left`, `center` or `right`
         stopOnFocus: true, // Prevents dismissing of toast on hover
+        callback: () => {
+          document.getElementById("controls").style.border = "none";
+        },
       }).showToast();
     }
   });
