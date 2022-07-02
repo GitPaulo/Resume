@@ -15,16 +15,16 @@ loadingTask.promise.then((_pdf) => {
     if (isMobile()) {
       renderDocument(page, (scale = MOBILE_SCALE));
       document.getElementById("btn_label").innerText = "📱 GitHub";
+    } else {
+      renderDocument(page, (scale = BROWSER_SCALE));
       Toastify({
-        text: "Hi 📱, use zoom buttons!",
+        text: "👋 Hey there, use zoom buttons!",
         duration: 2000,
         close: true,
         gravity: "top", // `top` or `bottom`
         position: "center", // `left`, `center` or `right`
         stopOnFocus: true, // Prevents dismissing of toast on hover
       }).showToast();
-    } else {
-      renderDocument(page, (scale = BROWSER_SCALE));
     }
   });
 });
