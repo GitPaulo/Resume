@@ -16534,6 +16534,7 @@ window.matchMedia("(max-width: 750px)").addEventListener("change", (media) => {
     document.getElementById("btn_label").innerText = "📱 GitHub";
   } else {
     pagePromise.then((page) => renderDocument(page, (scale = 1.25)));
+    document.getElementById("btn_label").innerText = "Return to GitHub";
   }
 });
 
