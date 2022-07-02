@@ -8,23 +8,6 @@ loadingTask.promise.then((_pdf) => {
   pdf = _pdf;
   pdf.getPage(1).then((page) => {
     renderDocument(page, scale);
-
-    // for new browsers only
-    let lastWidth = window.innerWidth;
-    let lastHeight = window.innerHeight;
-    window.addEventListener("resize", (event) => {
-      let newWidth = window.innerWidth;
-      let newHeight = window.innerHeight;
-
-      if (newWidth < lastWidth || newHeight < lastHeight) {
-        zoomIn(0.25);
-      } else {
-        zoomOut(0.25);
-      }
-
-      lastWidth = newWidth;
-      lastHeight = newHeight;
-    });
   });
 });
 
@@ -48,6 +31,17 @@ function renderDocument(page, scale) {
     viewport,
   });
 }
+
+// media scale
+window.matchMedia("(max-width: 750px)").addEventListener("change", (media) => {
+  let pagePromise = pdf.getPage(1);
+  if (media.matches) {
+    pagePromise.then((page) => renderDocument(page, (scale = 0.7)));
+    document.getElementById("btn_label").innerText = "📱 GitHub";
+  } else {
+    pagePromise.then((page) => renderDocument(page, (scale = 1.25)));
+  }
+});
 
 // for webpack
 window.zoomIn = zoomIn;

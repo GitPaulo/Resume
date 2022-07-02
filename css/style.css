@@ -10,6 +10,8 @@ p {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   height: 100%;
   width: 100%;
   background: rgb(58, 57, 57);
@@ -36,6 +38,7 @@ body {
 #controls {
   position: absolute;
   left: 50%;
+  top: 12.75%;
   transform: translate(-50%, -50%);
 }
 
@@ -96,4 +99,15 @@ body {
 .btn-one:hover::after {
   transform: scale(1, 0.1);
   opacity: 0;
+}
+
+/*
+ Media
+*/
+
+@media only screen and (max-width: 750px) {
+  .btn {
+    width: 140px;
+    height: 60px;
+  }
 }
