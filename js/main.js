@@ -25,6 +25,7 @@ loadingTask.promise.then((_pdf) => {
       });
     } else {
       renderDocument(page, (scale = BROWSER_SCALE));
+      document.getElementById("btn_label").innerText = "Return to GitHub";
       document.getElementById("b1").style.border = "2px solid red";
       document.getElementById("b2").style.border = "2px solid red";
       notify("👋 Hey there, please use the zoom buttons!", () => {
