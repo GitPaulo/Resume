@@ -16568,12 +16568,13 @@ function zoomIn(cscale) {
 }
 
 function zoomOut(cscale) {
-  pdf.getPage(1).then((page) => renderDocument(page, (scale -= cscale)));
-
   if (scale <= 0) {
     document.getElementById("too_small_message").style["display"] = "block";
+    scale = 0;
+    return;
   } else {
     document.getElementById("too_small_message").style["display"] = "none";
+    pdf.getPage(1).then((page) => renderDocument(page, (scale -= cscale)));
   }
 }
 
