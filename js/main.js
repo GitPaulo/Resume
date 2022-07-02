@@ -89,6 +89,49 @@ function notify(message, cb) {
   }).showToast();
 }
 
+// drago scroll
+document.addEventListener('DOMContentLoaded', function () {
+  const canvasWrap = document.getElementById('canvas_wrap');
+  let pos = { top: 0, left: 0, x: 0, y: 0 };
+
+  const mouseDownHandler = function (e) {
+    canvasWrap.style.cursor = 'grabbing';
+    canvasWrap.style.userSelect = 'none';
+
+    pos = {
+      left: canvasWrap.scrollLeft,
+      top: canvasWrap.scrollTop,
+      // Get the current mouse position
+      x: e.clientX,
+      y: e.clientY,
+    };
+
+    document.addEventListener('mousemove', mouseMoveHandler);
+    document.addEventListener('mouseup', mouseUpHandler);
+  };
+
+  const mouseMoveHandler = function (e) {
+    // How far the mouse has been moved
+    const dx = e.clientX - pos.x;
+    const dy = e.clientY - pos.y;
+
+    // Scroll the element
+    canvasWrap.scrollTop = pos.top - dy;
+    canvasWrap.scrollLeft = pos.left - dx;
+  };
+
+  const mouseUpHandler = function () {
+    canvasWrap.style.cursor = 'grab';
+    canvasWrap.style.removeProperty('user-select');
+
+    document.removeEventListener('mousemove', mouseMoveHandler);
+    document.removeEventListener('mouseup', mouseUpHandler);
+  };
+
+  // Attach the handler
+  canvasWrap.addEventListener('mousedown', mouseDownHandler);
+});
+
 // media scale
 window.matchMedia("(max-width: 750px)").addEventListener("change", (media) => {
   let pagePromise = pdf.getPage(1);

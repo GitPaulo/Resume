@@ -27,6 +27,8 @@ body {
 
 #canvas_wrap {
   text-align: center;
+  cursor: grab;
+  overflow: auto;
 }
 
 #too_small_message {
