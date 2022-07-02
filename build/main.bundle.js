@@ -17004,10 +17004,6 @@ loadingTask.promise.then((_pdf) => {
         gravity: "top", // `top` or `bottom`
         position: "center", // `left`, `center` or `right`
         stopOnFocus: true, // Prevents dismissing of toast on hover
-        style: {
-          background:
-            "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(78,77,77,1) 41%, rgba(0,0,0,1) 100%);",
-        },
       }).showToast();
     } else {
       renderDocument(page, (scale = BROWSER_SCALE));
