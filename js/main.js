@@ -93,6 +93,7 @@ function notify(message, cb) {
   Toastify({
     text: message,
     duration: 2000,
+    className: "toast",
     gravity: "top", // `top` or `bottom`
     position: "center", // `left`, `center` or `right`
     stopOnFocus: true, // Prevents dismissing of toast on hover
@@ -122,6 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
         linksAreaEl.innerHTML = ""; // destroy to avoid collecting
         for (let annotation of annotations) {
           const linkEl = document.createElement("a");
+          linkEl.classList.add('underline');
           linkEl.innerText = `🔗 ${annotation.url}`;
           linkEl.href = annotation.url;
           linksAreaEl.appendChild(linkEl);
