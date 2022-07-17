@@ -18518,6 +18518,10 @@ function closeLinks() {
   dialog.hide();
 }
 
+function download() {
+  window.open('resources/paulo_resume.pdf', '_self');
+}
+
 // links
 var dialog;
 document.addEventListener("DOMContentLoaded", function () {
@@ -18603,6 +18607,7 @@ window.zoomOut = zoomOut;
 window.center = center;
 window.openLinks = openLinks;
 window.closeLinks = closeLinks;
+window.download = download;
 
 })();
 
