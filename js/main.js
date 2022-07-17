@@ -13,8 +13,8 @@ const loadingTask = pdfjsLib.getDocument("./resources/paulo_resume.pdf");
 // ?
 import A11yDialog from "a11y-dialog";
 
-const MOBILE_SCALE = 1.25;
-const BROWSER_SCALE = 1;
+const MOBILE_SCALE = 0.75;
+const BROWSER_SCALE = 1.25;
 const TOO_SMALL_SCALE = 0.25;
 
 let scale;
@@ -90,7 +90,7 @@ function renderDocument(page, scale) {
   let canvas = document.getElementById("resume_canvas");
   let context = canvas.getContext("2d");
 
-  const resolution = 1.75;
+  const resolution = 1.4;
   canvas.height = resolution * viewport.height;
   canvas.width = resolution * viewport.width;
 
