@@ -34,6 +34,9 @@
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
+/*!******************************************************!*\
+  !*** ./node_modules/pdfjs-dist/build/pdf.worker.mjs ***!
+  \******************************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   WorkerMessageHandler: () => (/* binding */ WorkerMessageHandler)

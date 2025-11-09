@@ -1,17 +1,16 @@
 // css
-require("../css/style.css");
+import "../css/style.css";
 
 // libs
-const Toastify = require("toastify-js");
-const isMobile = require("is-mobile");
-const pdfjsLib = require("pdfjs-dist");
+import Toastify from "toastify-js";
+import isMobile from "is-mobile";
+import * as pdfjsLib from "pdfjs-dist";
+import A11yDialog from "a11y-dialog";
 
 // Configure PDF.js worker
-pdfjsLib.GlobalWorkerOptions.workerSrc = "./build/main.bundle.worker.js";
+pdfjsLib.GlobalWorkerOptions.workerSrc = "build/main.bundle.worker.js";
 
-const loadingTask = pdfjsLib.getDocument("./resources/paulo_resume.pdf");
-
-import A11yDialog from "a11y-dialog";
+const loadingTask = pdfjsLib.getDocument("resources/paulo_resume.pdf");
 
 const MOBILE_SCALE = 0.75;
 const BROWSER_SCALE = 1.25;
@@ -19,6 +18,7 @@ const TOO_SMALL_SCALE = 0.25;
 
 let scale;
 let pdf;
+let currentRenderTask = null;
 
 loadingTask.promise.then((_pdf) => {
   pdf = _pdf;
@@ -76,14 +76,40 @@ function zoomOut(cscale) {
 }
 
 function center() {
-  document.getElementById("canvas_wrap").scrollLeft =
-    (document.getElementById("resume_canvas").offsetWidth -
-      document.getElementById("canvas_wrap").offsetWidth) /
-    2;
-  document.getElementById("canvas_wrap").scrollTop = 0;
+  const canvasWrap = document.getElementById("canvas_wrap");
+
+  // Calculate zoom to fit width with reasonable padding (90% of viewport width)
+  const targetWidth = canvasWrap.offsetWidth * 0.9;
+
+  pdf.getPage(1).then((page) => {
+    const viewport = page.getViewport({ scale: 1.0 });
+    const fitScale = targetWidth / viewport.width;
+
+    // Set reasonable bounds for scale
+    const reasonableScale = Math.max(0.5, Math.min(2.0, fitScale));
+
+    renderDocument(page, (scale = reasonableScale));
+
+    // Scroll to top
+    setTimeout(() => {
+      canvasWrap.scrollTop = 0;
+      canvasWrap.scrollLeft = Math.max(
+        0,
+        (document.getElementById("resume_canvas").offsetWidth -
+          canvasWrap.offsetWidth) /
+          2
+      );
+    }, 50);
+  });
 }
 
 function renderDocument(page, scale) {
+  // Cancel any pending render task
+  if (currentRenderTask) {
+    currentRenderTask.cancel();
+    currentRenderTask = null;
+  }
+
   let viewport = page.getViewport({ scale: scale });
   let canvas = document.getElementById("resume_canvas");
   let context = canvas.getContext("2d");
@@ -95,11 +121,22 @@ function renderDocument(page, scale) {
   canvas.style.height = `${viewport.height}px`; //showing size will be smaller size
   canvas.style.width = `${viewport.width}px`;
 
-  page.render({
+  currentRenderTask = page.render({
     canvasContext: context,
     viewport,
     transform: [resolution, 0, 0, resolution, 0, 0],
   });
+
+  currentRenderTask.promise
+    .then(() => {
+      currentRenderTask = null;
+    })
+    .catch((err) => {
+      if (err.name !== "RenderingCancelledException") {
+        console.error("Rendering error:", err);
+      }
+      currentRenderTask = null;
+    });
 }
 
 function notify(message, cb) {
@@ -107,7 +144,7 @@ function notify(message, cb) {
     text: message,
     duration: 2000,
     className: "toast",
-    gravity: "top", // `top` or `bottom`
+    gravity: "bottom", // `top` or `bottom`
     position: "center", // `left`, `center` or `right`
     stopOnFocus: true, // Prevents dismissing of toast on hover
     callback: cb,
@@ -115,7 +152,12 @@ function notify(message, cb) {
 }
 
 function openLinks() {
-  dialog.show();
+  // Toggle: if already open, close it
+  if (dialogEl.getAttribute("aria-hidden") === "false") {
+    dialog.hide();
+  } else {
+    dialog.show();
+  }
 }
 
 function closeLinks() {
@@ -128,25 +170,51 @@ function download() {
 
 // links
 var dialog;
+var dialogEl;
+
+// Make sure dialogEl is accessible to openLinks
+window.addEventListener("load", function () {
+  dialogEl = document.getElementById("links_dialog");
+});
+
 document.addEventListener("DOMContentLoaded", function () {
   // links dialog
-  const dialogEl = document.getElementById("links_dialog");
+  dialogEl = document.getElementById("links_dialog");
   dialog = new A11yDialog(dialogEl);
+  const linksBtn = document.getElementById("b4");
 
   dialog.on("show", function () {
+    // Add outline to links button when modal is open
+    if (linksBtn) {
+      linksBtn.classList.add("active");
+    }
+
     pdf.getPage(1).then((page) => {
       page.getAnnotations().then((annotations) => {
         const linksAreaEl = document.getElementById("links_area");
         linksAreaEl.innerHTML = ""; // destroy to avoid collecting
+
+        // Remove duplicates using Set
+        const uniqueUrls = new Set();
+
         for (let annotation of annotations) {
-          const linkEl = document.createElement("a");
-          linkEl.classList.add("underline");
-          linkEl.innerText = `🔗 ${annotation.url}`;
-          linkEl.href = annotation.url;
-          linksAreaEl.appendChild(linkEl);
+          if (annotation.url && !uniqueUrls.has(annotation.url)) {
+            uniqueUrls.add(annotation.url);
+            const linkEl = document.createElement("a");
+            linkEl.innerText = annotation.url;
+            linkEl.href = annotation.url;
+            linksAreaEl.appendChild(linkEl);
+          }
         }
       });
     });
+  });
+
+  dialog.on("hide", function () {
+    // Remove outline from links button when modal is closed
+    if (linksBtn) {
+      linksBtn.classList.remove("active");
+    }
   });
 });
 

@@ -39,6 +39,7 @@ h1 {
   text-align: center;
   cursor: grab;
   overflow: auto;
+  padding: 4%;
 }
 
 #too_small_message {
@@ -52,28 +53,66 @@ h1 {
 }
 
 #controls {
-  position: relative;
-  top: 10px;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  justify-content: center;
-  gap: 4px;
+  gap: 8px;
+  z-index: 1000;
 }
 
-#controls>button {
-  font-size: medium;
+.zoom_btn {
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "Roboto", monospace;
+  white-space: nowrap;
 }
 
-/*
-  Classes
-*/
-
-.attention {
-  border: 2px solid red;
+/* Hide icons on desktop */
+.zoom_btn .btn-icon {
+  display: none;
 }
 
 .zoom_btn:hover {
-  background-color: gainsboro;
-  cursor: pointer;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  background: rgba(255, 255, 255, 1);
+}
+
+.zoom_btn:active {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.zoom_btn.active {
+  outline: 2px solid #0074d9;
+  outline-offset: 2px;
+}
+
+.zoom_btn.attention {
+  animation: flicker 0.8s ease-in-out infinite;
+}
+
+@keyframes flicker {
+  0%,
+  100% {
+    outline: 2px solid transparent;
+  }
+
+  50% {
+    outline: 2px solid #eb5454;
+    outline-offset: 2px;
+  }
 }
 
 .toast {
@@ -142,22 +181,23 @@ a {
 }
 
 .dialog-content {
-  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.98);
   margin: auto;
   z-index: 2;
   position: relative;
   animation:
     fade-in 400ms 200ms both,
     slide-up 400ms 200ms both;
-  padding: 1em;
+  padding: 2em;
   max-width: 90%;
-  width: 600px;
-  border-radius: 2px;
+  width: 500px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 @media screen and (min-width: 700px) {
   .dialog-content {
-    padding: 2em;
+    padding: 2.5em;
   }
 }
 
@@ -174,17 +214,42 @@ a {
 }
 
 .dialog h1 {
-  margin: 0;
-  font-size: 1.25em;
+  margin: 0 0 0.5em 0;
+  font-size: 1.5em;
+  font-weight: 500;
+  text-align: center;
+  color: #333;
+}
+
+.dialog-description {
+  margin: 0 0 1.5em 0;
+  text-align: center;
+  color: #666;
+  font-size: 0.9em;
+  font-family: "Roboto", monospace;
 }
 
 #links_area {
-  align-items: flex-start;
-  align-content: flex-start;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 12px;
   font-family: "Roboto", monospace;
+}
+
+#links_area a {
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  word-break: break-all;
+  font-size: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+#links_area a:hover {
+  background: rgba(0, 0, 0, 0.12);
+  transform: translateX(4px);
+  border-color: rgba(0, 0, 0, 0.1);
 }
 
 /*
@@ -239,8 +304,45 @@ a {
   }
 
   #button_area {
-    top: 15px;
+    top: 75px;
     right: 15px;
+  }
+
+  .zoom_btn {
+    padding: 6px;
+    font-size: 16px;
+    gap: 0;
+    min-width: 36px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Show icons on mobile, hide text */
+  .zoom_btn .btn-icon {
+    display: inline;
+    font-size: 16px;
+    color: #000;
+  }
+
+  .zoom_btn .btn-text {
+    display: none;
+  }
+
+  #controls {
+    top: 15px;
+    gap: 6px;
+    flex-wrap: wrap;
+    max-width: 90vw;
+  }
+
+  /* Make canvas responsive on mobile */
+  #resume_canvas {
+    max-width: 100%;
+    height: auto !important;
+    width: auto !important;
   }
 }
 

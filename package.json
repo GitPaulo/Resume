@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
+    "build": "webpack && mkdir -p build/assets && cp -f favicon.ico build/assets/",
     "dev": "python3 -m http.server 8000",
     "lint": "eslint js/**/*.js",
     "lint:fix": "eslint js/**/*.js --fix",
