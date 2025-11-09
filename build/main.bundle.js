@@ -825,6 +825,7 @@ h1 {
 }
 
 @keyframes flicker {
+
   0%,
   100% {
     outline: 2px solid transparent;
@@ -881,9 +882,11 @@ a {
     slide-up 400ms 200ms both;
   padding: 2em;
   max-width: 90%;
-  width: 500px;
+  width: 550px;
   border-radius: var(--radius-lg);
   box-shadow: var(--elev-lg);
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 @media screen and (min-width: 700px) {
@@ -912,41 +915,125 @@ a {
   color: var(--color-text);
 }
 
+.links-count {
+  display: inline-block;
+  background: black;
+  color: white;
+  font-size: 0.65em;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  margin-left: 8px;
+  font-weight: 600;
+  vertical-align: middle;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .dialog-description {
   margin: 0 0 1.5em 0;
   color: var(--color-text-muted);
   font-size: 0.9em;
   font-family: var(--font-base);
+  text-align: left;
+}
+
+.copy-icon {
+  filter: grayscale(1);
+  opacity: 0.6;
 }
 
 #links-area {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   font-family: var(--font-base);
 }
 
-#links-area a {
+#links-area.empty {
+  text-align: center;
+  color: var(--color-text-muted);
+  padding: 2em;
+  font-style: italic;
+}
+
+.link-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   padding: 12px 16px;
-  background: rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.05);
   border-radius: var(--radius-md);
   transition: all var(--transition-fast);
-  word-break: break-all;
-  font-size: 14px;
   border: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
 }
 
-#links-area a:hover {
-  background: rgba(0, 0, 0, 0.12);
-  transform: translateX(4px);
+.link-item:hover {
+  background: rgba(0, 0, 0, 0.08);
   border-color: rgba(0, 0, 0, 0.1);
+  transform: translateX(2px);
 }
 
-#links-area a:focus,
-#links-area a:focus-visible {
+.link-item a {
+  flex: 1;
+  font-size: 14px;
+  word-break: break-all;
+  text-decoration: none;
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.link-item a:hover {
+  text-decoration: underline;
+}
+
+.link-item a:focus,
+.link-item a:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
-  background: rgba(0, 0, 0, 0.12);
+  border-radius: 2px;
+}
+
+.link-icon {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.copy-btn {
+  background: transparent;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  opacity: 0.6;
+  min-width: 30px;
+  width: 30px;
+}
+
+.copy-btn>* {
+  filter: grayscale(1);
+}
+
+.copy-btn:hover {
+  background: rgba(0, 0, 0, 0.08);
+  opacity: 1;
+}
+
+.copy-btn:focus,
+.copy-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.copy-btn.copied {
+  opacity: 1;
 }
 
 /*
@@ -982,7 +1069,7 @@ a {
 .github-icon:focus,
 .github-icon:focus-visible {
   outline: var(--focus-ring);
-  outline-offset: 3px;
+  outline-offset: var(--focus-offset);
 }
 
 .github-icon:active {
@@ -1057,6 +1144,7 @@ a {
 
 /* Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -1077,6 +1165,7 @@ a {
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
+
   .zoom_btn,
   .github-icon {
     border: 2px solid currentColor;
@@ -28706,7 +28795,7 @@ function center() {
         0,
         (document.getElementById("resume-canvas").offsetWidth -
           canvasWrap.offsetWidth) /
-          2
+        2
       );
     }, 50);
   });
@@ -28838,6 +28927,7 @@ document.addEventListener("DOMContentLoaded", function () {
     pdf.getPage(1).then((page) => {
       page.getAnnotations().then((annotations) => {
         const linksAreaEl = document.getElementById("links-area");
+        const linksCountEl = document.getElementById("links-count");
         linksAreaEl.innerHTML = ""; // destroy to avoid collecting
 
         // Remove duplicates using Set
@@ -28846,12 +28936,65 @@ document.addEventListener("DOMContentLoaded", function () {
         for (let annotation of annotations) {
           if (annotation.url && !uniqueUrls.has(annotation.url)) {
             uniqueUrls.add(annotation.url);
-            const linkEl = document.createElement("a");
-            linkEl.innerText = annotation.url;
-            linkEl.href = annotation.url;
-            linksAreaEl.appendChild(linkEl);
           }
         }
+
+        // Update count
+        const linkCount = uniqueUrls.size;
+        linksCountEl.textContent = linkCount;
+
+        // Show empty state if no links
+        if (linkCount === 0) {
+          linksAreaEl.classList.add("empty");
+          linksAreaEl.textContent = "No links found in document.";
+          return;
+        }
+
+        linksAreaEl.classList.remove("empty");
+
+        // Create link items
+        uniqueUrls.forEach((url) => {
+          const linkItem = document.createElement("div");
+          linkItem.className = "link-item";
+
+          // Link element
+          const linkEl = document.createElement("a");
+          linkEl.href = url;
+          linkEl.target = "_blank";
+          linkEl.rel = "noopener noreferrer";
+          linkEl.innerHTML = `<span class="link-icon" aria-hidden="true">↗</span><span>${url}</span>`;
+
+          // Copy button with icon
+          const copyBtn = document.createElement("button");
+          copyBtn.className = "copy-btn";
+          copyBtn.innerHTML = "<span>📋</span>";
+          copyBtn.type = "button";
+          copyBtn.setAttribute("aria-label", `Copy ${url}`);
+
+          copyBtn.onclick = async () => {
+            // Reset all other copy buttons first
+            document.querySelectorAll(".copy-btn").forEach((btn) => {
+              btn.innerHTML = "<span>📋</span>";
+              btn.classList.remove("copied");
+            });
+
+            try {
+              await navigator.clipboard.writeText(url);
+              copyBtn.innerHTML = "<span>✓</span>";
+              copyBtn.classList.add("copied");
+              setTimeout(() => {
+                copyBtn.innerHTML = "<span>📋</span>";
+                copyBtn.classList.remove("copied");
+              }, 2000);
+            } catch (err) {
+              console.error("Failed to copy:", err);
+            }
+          };
+
+          linkItem.appendChild(linkEl);
+          linkItem.appendChild(copyBtn);
+          linksAreaEl.appendChild(linkItem);
+        });
       });
     });
   });
@@ -28955,7 +29098,7 @@ document.addEventListener("keydown", function (e) {
     e.target.tagName === "INPUT" ||
     e.target.tagName === "TEXTAREA" ||
     document.getElementById("links-dialog").getAttribute("aria-hidden") ===
-      "false"
+    "false"
   ) {
     return;
   }

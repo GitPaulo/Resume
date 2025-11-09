@@ -269,6 +269,7 @@ document.addEventListener("DOMContentLoaded", function () {
     pdf.getPage(1).then((page) => {
       page.getAnnotations().then((annotations) => {
         const linksAreaEl = document.getElementById("links-area");
+        const linksCountEl = document.getElementById("links-count");
         linksAreaEl.innerHTML = ""; // destroy to avoid collecting
 
         // Remove duplicates using Set
@@ -277,12 +278,65 @@ document.addEventListener("DOMContentLoaded", function () {
         for (let annotation of annotations) {
           if (annotation.url && !uniqueUrls.has(annotation.url)) {
             uniqueUrls.add(annotation.url);
-            const linkEl = document.createElement("a");
-            linkEl.innerText = annotation.url;
-            linkEl.href = annotation.url;
-            linksAreaEl.appendChild(linkEl);
           }
         }
+
+        // Update count
+        const linkCount = uniqueUrls.size;
+        linksCountEl.textContent = linkCount;
+
+        // Show empty state if no links
+        if (linkCount === 0) {
+          linksAreaEl.classList.add("empty");
+          linksAreaEl.textContent = "No links found in document.";
+          return;
+        }
+
+        linksAreaEl.classList.remove("empty");
+
+        // Create link items
+        uniqueUrls.forEach((url) => {
+          const linkItem = document.createElement("div");
+          linkItem.className = "link-item";
+
+          // Link element
+          const linkEl = document.createElement("a");
+          linkEl.href = url;
+          linkEl.target = "_blank";
+          linkEl.rel = "noopener noreferrer";
+          linkEl.innerHTML = `<span class="link-icon" aria-hidden="true">↗</span><span>${url}</span>`;
+
+          // Copy button with icon
+          const copyBtn = document.createElement("button");
+          copyBtn.className = "copy-btn";
+          copyBtn.innerHTML = "<span>📋</span>";
+          copyBtn.type = "button";
+          copyBtn.setAttribute("aria-label", `Copy ${url}`);
+
+          copyBtn.onclick = async () => {
+            // Reset all other copy buttons first
+            document.querySelectorAll(".copy-btn").forEach((btn) => {
+              btn.innerHTML = "<span>📋</span>";
+              btn.classList.remove("copied");
+            });
+
+            try {
+              await navigator.clipboard.writeText(url);
+              copyBtn.innerHTML = "<span>✓</span>";
+              copyBtn.classList.add("copied");
+              setTimeout(() => {
+                copyBtn.innerHTML = "<span>📋</span>";
+                copyBtn.classList.remove("copied");
+              }, 2000);
+            } catch (err) {
+              console.error("Failed to copy:", err);
+            }
+          };
+
+          linkItem.appendChild(linkEl);
+          linkItem.appendChild(copyBtn);
+          linksAreaEl.appendChild(linkItem);
+        });
       });
     });
   });
