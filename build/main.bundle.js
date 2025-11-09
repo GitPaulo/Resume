@@ -634,17 +634,7 @@ h1 {
 }
 
 #canvas_wrap:focus {
-  outline: 3px solid #0074d9;
-  outline-offset: -3px;
-}
-
-#canvas_wrap:focus:not(:focus-visible) {
   outline: none;
-}
-
-#canvas_wrap:focus-visible {
-  outline: 3px solid #0074d9;
-  outline-offset: -3px;
 }
 
 #too_small_message {
@@ -674,13 +664,17 @@ h1 {
   border: none;
   cursor: pointer;
   font-size: 14px;
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   display: flex;
   align-items: center;
   gap: 6px;
   font-family: "Roboto", monospace;
   white-space: nowrap;
+  transform: translateY(0) scale(1);
 }
 
 /* Hide icons on desktop */
@@ -689,7 +683,7 @@ h1 {
 }
 
 .zoom_btn:hover {
-  transform: translateY(-2px) scale(1.05);
+  transform: translateY(-2px) scale(1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   background: rgba(255, 255, 255, 1);
 }
@@ -699,17 +693,8 @@ h1 {
   outline-offset: 2px;
 }
 
-.zoom_btn:focus:not(:focus-visible) {
-  outline: none;
-}
-
-.zoom_btn:focus-visible {
-  outline: 3px solid #0074d9;
-  outline-offset: 2px;
-}
-
 .zoom_btn:active {
-  transform: translateY(-1px) scale(1.02);
+  transform: translateY(0) scale(1);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
@@ -819,7 +804,6 @@ a {
 
 .dialog-description {
   margin: 0 0 1.5em 0;
-  text-align: center;
   color: #666;
   font-size: 0.9em;
   font-family: "Roboto", monospace;
@@ -849,16 +833,6 @@ a {
 }
 
 #links_area a:focus {
-  outline: 2px solid #0074d9;
-  outline-offset: 2px;
-  background: rgba(0, 0, 0, 0.12);
-}
-
-#links_area a:focus:not(:focus-visible) {
-  outline: none;
-}
-
-#links_area a:focus-visible {
   outline: 2px solid #0074d9;
   outline-offset: 2px;
   background: rgba(0, 0, 0, 0.12);
@@ -896,15 +870,6 @@ a {
 }
 
 .github-icon:focus {
-  outline: 3px solid #0074d9;
-  outline-offset: 3px;
-}
-
-.github-icon:focus:not(:focus-visible) {
-  outline: none;
-}
-
-.github-icon:focus-visible {
   outline: 3px solid #0074d9;
   outline-offset: 3px;
 }
@@ -28550,7 +28515,7 @@ function zoomIn(cscale) {
   }
 
   scale += cscale;
-  
+
   pdf.getPage(1).then((page) => {
     renderDocument(page, scale);
   });
@@ -28563,7 +28528,7 @@ function zoomOut(cscale) {
   }
 
   scale -= cscale;
-  
+
   pdf.getPage(1).then((page) => {
     renderDocument(page, scale);
   });
@@ -28754,9 +28719,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // Attach the handler
   canvasWrap.addEventListener("mousedown", mouseDownHandler);
 
-  // Keyboard navigation for canvas
-  canvasWrap.setAttribute("tabindex", "0");
-
+  // Keyboard navigation for canvas (only when focused)
+  // Note: tabindex removed to not interfere with button tabbing
   canvasWrap.addEventListener("keydown", function (e) {
     const scrollAmount = 50;
 

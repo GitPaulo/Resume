@@ -262,9 +262,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // Attach the handler
   canvasWrap.addEventListener("mousedown", mouseDownHandler);
 
-  // Keyboard navigation for canvas
-  canvasWrap.setAttribute("tabindex", "0");
-
+  // Keyboard navigation for canvas (only when focused)
+  // Note: tabindex removed to not interfere with button tabbing
   canvasWrap.addEventListener("keydown", function (e) {
     const scrollAmount = 50;
 
