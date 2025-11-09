@@ -132,6 +132,8 @@ function renderDocument(page, scale) {
   currentRenderTask.promise
     .then(() => {
       currentRenderTask = null;
+      // Highlight links after rendering
+      highlightLinks(page, viewport);
     })
     .catch((err) => {
       if (err.name !== "RenderingCancelledException") {
@@ -139,6 +141,41 @@ function renderDocument(page, scale) {
       }
       currentRenderTask = null;
     });
+}
+
+function highlightLinks(page, viewport) {
+  // Remove existing link highlights
+  const existingHighlights = document.querySelectorAll(".pdf-link-highlight");
+  existingHighlights.forEach((el) => el.remove());
+
+  page.getAnnotations().then((annotations) => {
+    const pdfContainer = document.getElementById("pdf-container");
+
+    annotations.forEach((annotation) => {
+      if (annotation.subtype === "Link" && annotation.url) {
+        const rect = annotation.rect;
+        const [x1, y1, x2, y2] = viewport.convertToViewportRectangle(rect);
+
+        // Create a clickable overlay for the link
+        const linkDiv = document.createElement("a");
+        linkDiv.href = annotation.url;
+        linkDiv.target = "_blank";
+        linkDiv.rel = "noopener noreferrer";
+        linkDiv.className = "pdf-link-highlight";
+        linkDiv.setAttribute("aria-label", `Link to ${annotation.url}`);
+
+        // Position the link overlay
+        linkDiv.style.position = "absolute";
+        linkDiv.style.left = `${Math.min(x1, x2)}px`;
+        linkDiv.style.top = `${Math.min(y1, y2)}px`;
+        linkDiv.style.width = `${Math.abs(x2 - x1)}px`;
+        linkDiv.style.height = `${Math.abs(y2 - y1)}px`;
+
+        // Add to container
+        pdfContainer.appendChild(linkDiv);
+      }
+    });
+  });
 }
 
 function notify(message, cb) {
