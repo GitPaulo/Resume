@@ -22,6 +22,26 @@ body {
   background: rgb(58, 57, 57);
 }
 
+/* Skip link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #0074d9;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  z-index: 10000;
+  border-radius: 0 0 4px 0;
+  font-family: "Roboto", monospace;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid #ffffff;
+  outline-offset: 2px;
+}
+
 h1 {
   font-size: 1.6em;
   line-height: 1.1;
@@ -40,6 +60,20 @@ h1 {
   cursor: grab;
   overflow: auto;
   padding: 4%;
+}
+
+#canvas_wrap:focus {
+  outline: 3px solid #0074d9;
+  outline-offset: -3px;
+}
+
+#canvas_wrap:focus:not(:focus-visible) {
+  outline: none;
+}
+
+#canvas_wrap:focus-visible {
+  outline: 3px solid #0074d9;
+  outline-offset: -3px;
 }
 
 #too_small_message {
@@ -89,6 +123,20 @@ h1 {
   background: rgba(255, 255, 255, 1);
 }
 
+.zoom_btn:focus {
+  outline: 3px solid #0074d9;
+  outline-offset: 2px;
+}
+
+.zoom_btn:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.zoom_btn:focus-visible {
+  outline: 3px solid #0074d9;
+  outline-offset: 2px;
+}
+
 .zoom_btn:active {
   transform: translateY(-1px) scale(1.02);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
@@ -104,7 +152,6 @@ h1 {
 }
 
 @keyframes flicker {
-
   0%,
   100% {
     outline: 2px solid transparent;
@@ -128,29 +175,6 @@ h1 {
 a {
   text-decoration: none;
   color: #0074d9;
-}
-
-.underline {
-  position: relative;
-}
-
-.underline::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 0;
-  height: 2px;
-  background-color: #298be0;
-  transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .underline:hover::before {
-    left: 0;
-    right: auto;
-    width: 100%;
-  }
 }
 
 /*
@@ -253,6 +277,22 @@ a {
   border-color: rgba(0, 0, 0, 0.1);
 }
 
+#links_area a:focus {
+  outline: 2px solid #0074d9;
+  outline-offset: 2px;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+#links_area a:focus:not(:focus-visible) {
+  outline: none;
+}
+
+#links_area a:focus-visible {
+  outline: 2px solid #0074d9;
+  outline-offset: 2px;
+  background: rgba(0, 0, 0, 0.12);
+}
+
 /*
   Github Icon Button
 */
@@ -282,6 +322,20 @@ a {
   transform: translateY(-5px) scale(1.1);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   background: rgba(255, 255, 255, 1);
+}
+
+.github-icon:focus {
+  outline: 3px solid #0074d9;
+  outline-offset: 3px;
+}
+
+.github-icon:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.github-icon:focus-visible {
+  outline: 3px solid #0074d9;
+  outline-offset: 3px;
 }
 
 .github-icon:active {
@@ -350,5 +404,41 @@ a {
 @media only screen and (max-width: 500px) {
   #canvas_wrap {
     overflow: auto;
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .zoom_btn.attention {
+    animation: none;
+  }
+
+  .github-icon:hover svg {
+    transform: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .zoom_btn,
+  .github-icon {
+    border: 2px solid currentColor;
+  }
+
+  #links_area a {
+    border: 2px solid currentColor;
+  }
+
+  .dialog-content {
+    border: 3px solid #000;
   }
 }

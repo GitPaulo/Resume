@@ -97,7 +97,7 @@ function center() {
         0,
         (document.getElementById("resume_canvas").offsetWidth -
           canvasWrap.offsetWidth) /
-        2
+          2
       );
     }, 50);
   });
@@ -259,6 +259,95 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Attach the handler
   canvasWrap.addEventListener("mousedown", mouseDownHandler);
+
+  // Keyboard navigation for canvas
+  canvasWrap.setAttribute("tabindex", "0");
+
+  canvasWrap.addEventListener("keydown", function (e) {
+    const scrollAmount = 50;
+
+    switch (e.key) {
+      case "ArrowUp":
+        e.preventDefault();
+        canvasWrap.scrollTop -= scrollAmount;
+        break;
+      case "ArrowDown":
+        e.preventDefault();
+        canvasWrap.scrollTop += scrollAmount;
+        break;
+      case "ArrowLeft":
+        e.preventDefault();
+        canvasWrap.scrollLeft -= scrollAmount;
+        break;
+      case "ArrowRight":
+        e.preventDefault();
+        canvasWrap.scrollLeft += scrollAmount;
+        break;
+      case "Home":
+        e.preventDefault();
+        canvasWrap.scrollTop = 0;
+        break;
+      case "End":
+        e.preventDefault();
+        canvasWrap.scrollTop = canvasWrap.scrollHeight;
+        break;
+      case "PageUp":
+        e.preventDefault();
+        canvasWrap.scrollTop -= canvasWrap.offsetHeight;
+        break;
+      case "PageDown":
+        e.preventDefault();
+        canvasWrap.scrollTop += canvasWrap.offsetHeight;
+        break;
+    }
+  });
+});
+
+// Keyboard shortcuts
+document.addEventListener("keydown", function (e) {
+  // Don't trigger if user is in an input or modal
+  if (
+    e.target.tagName === "INPUT" ||
+    e.target.tagName === "TEXTAREA" ||
+    document.getElementById("links_dialog").getAttribute("aria-hidden") ===
+      "false"
+  ) {
+    return;
+  }
+
+  switch (e.key) {
+    case "+":
+    case "=":
+      e.preventDefault();
+      zoomIn(0.25);
+      break;
+    case "-":
+      e.preventDefault();
+      zoomOut(0.25);
+      break;
+    case "0":
+      e.preventDefault();
+      center();
+      break;
+    case "l":
+    case "L":
+      e.preventDefault();
+      openLinks();
+      break;
+    case "d":
+    case "D":
+      e.preventDefault();
+      download();
+      break;
+    case "Escape":
+      if (
+        document.getElementById("links_dialog").getAttribute("aria-hidden") ===
+        "false"
+      ) {
+        closeLinks();
+      }
+      break;
+  }
 });
 
 // media scale
