@@ -161,9 +161,11 @@ function updateCenterButton() {
   if (!centerBtn) return;
 
   if (isCentered) {
-    centerBtn.classList.add("hide-center-btn");
+    centerBtn.classList.remove("visible");
+    centerBtn.classList.add("hidden");
   } else {
-    centerBtn.classList.remove("hide-center-btn");
+    centerBtn.classList.remove("hidden");
+    centerBtn.classList.add("visible");
   }
 }
 

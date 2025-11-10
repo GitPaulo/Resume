@@ -826,17 +826,12 @@ h1 {
 }
 
 /* Center button hide/show animation */
-.zoom-btn.hide-center-btn {
-  opacity: 0;
-  transform: scale(0);
-  pointer-events: none;
-}
-
-#controls.visible .zoom-btn.hide-center-btn {
+#b3.hidden {
   animation: bounceOut 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
-#controls.visible .zoom-btn:not(.hide-center-btn) {
+#b3.visible {
+  display: flex;
   animation: bounceIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
@@ -28882,9 +28877,11 @@ function updateCenterButton() {
   if (!centerBtn) return;
 
   if (isCentered) {
-    centerBtn.classList.add("hide-center-btn");
+    centerBtn.classList.remove("visible");
+    centerBtn.classList.add("hidden");
   } else {
-    centerBtn.classList.remove("hide-center-btn");
+    centerBtn.classList.remove("hidden");
+    centerBtn.classList.add("visible");
   }
 }
 
