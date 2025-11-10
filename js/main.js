@@ -49,9 +49,9 @@ function checkCenteredState() {
   const canvasWrap = document.getElementById("canvas-wrap");
   const isAtTop = canvasWrap.scrollTop <= 10;
   const isAtCenteredZoom = centeredScale && Math.abs(scale - centeredScale) < 0.01;
-  
+
   const shouldBeHidden = isAtTop && isAtCenteredZoom;
-  
+
   if (shouldBeHidden !== isCentered) {
     isCentered = shouldBeHidden;
     updateCenterButton();
