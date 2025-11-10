@@ -836,6 +836,7 @@ h1 {
 }
 
 @keyframes flicker {
+
   0%,
   100% {
     outline: 2px solid transparent;
@@ -1063,7 +1064,7 @@ a {
   width: 30px;
 }
 
-.copy-btn > * {
+.copy-btn>* {
   filter: grayscale(1);
 }
 
@@ -1205,6 +1206,7 @@ a {
 
 /* Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -1225,6 +1227,7 @@ a {
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
+
   .zoom_btn,
   .github-icon {
     border: 2px solid currentColor;
