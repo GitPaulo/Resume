@@ -62,10 +62,6 @@ loadingTask.promise
         notify("👋 Hi 📱, please use zoom buttons!", () =>
           toggleAttention(false)
         );
-      } else {
-        notify("👋 Hey 💻, please use the zoom buttons and drag with mouse!", () =>
-          toggleAttention(false)
-        );
       }
     }, 100);
   })
