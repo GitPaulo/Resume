@@ -667,9 +667,10 @@ h1 {
 #controls {
   position: fixed;
   inset-block-start: 20px;
-  inset-inline-start: 50%;
+  left: 50%;
   transform: translateX(-50%);
   display: flex;
+  flex-wrap: nowrap;
   gap: 8px;
   z-index: 1000;
   opacity: 0;
