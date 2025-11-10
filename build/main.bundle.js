@@ -651,8 +651,8 @@ h1 {
 /* Layout controls and wrappers */
 #button-area {
   position: fixed;
-  inset-block-start: 20px;
-  inset-inline-end: 20px;
+  inset-block-start: 24px;
+  inset-inline-end: 24px;
   z-index: 1000;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
@@ -1125,6 +1125,10 @@ a {
 
 .github-icon svg path {
   transition: fill var(--transition-med);
+}
+
+.github-icon svg {
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .github-icon:hover svg {
