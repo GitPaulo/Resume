@@ -836,7 +836,6 @@ h1 {
 }
 
 @keyframes flicker {
-
   0%,
   100% {
     outline: 2px solid transparent;
@@ -1064,7 +1063,7 @@ a {
   width: 30px;
 }
 
-.copy-btn>* {
+.copy-btn > * {
   filter: grayscale(1);
 }
 
@@ -1202,7 +1201,6 @@ a {
 
 /* Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
-
   *,
   *::before,
   *::after {
@@ -1223,7 +1221,6 @@ a {
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
-
   .zoom_btn,
   .github-icon {
     border: 2px solid currentColor;
@@ -28764,7 +28761,8 @@ function showUI() {
 function checkCenteredState() {
   const canvasWrap = document.getElementById("canvas-wrap");
   const isAtTop = canvasWrap.scrollTop <= 10;
-  const isAtCenteredZoom = centeredScale && Math.abs(scale - centeredScale) < 0.01;
+  const isAtCenteredZoom =
+    centeredScale && Math.abs(scale - centeredScale) < 0.01;
 
   const shouldBeHidden = isAtTop && isAtCenteredZoom;
 
@@ -28779,7 +28777,7 @@ loadingTask.promise
     pdf = _pdf;
     return pdf.getPage(1);
   })
-  .then((page) => {
+  .then(() => {
     // Start with centered view
     center();
 
@@ -28865,7 +28863,7 @@ function center() {
         0,
         (document.getElementById("resume-canvas").offsetWidth -
           canvasWrap.offsetWidth) /
-        2
+          2
       );
       checkCenteredState();
     }, 50);
@@ -29196,7 +29194,7 @@ document.addEventListener("keydown", function (e) {
     e.target.tagName === "INPUT" ||
     e.target.tagName === "TEXTAREA" ||
     document.getElementById("links-dialog").getAttribute("aria-hidden") ===
-    "false"
+      "false"
   ) {
     return;
   }

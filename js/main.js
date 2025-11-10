@@ -48,7 +48,8 @@ function showUI() {
 function checkCenteredState() {
   const canvasWrap = document.getElementById("canvas-wrap");
   const isAtTop = canvasWrap.scrollTop <= 10;
-  const isAtCenteredZoom = centeredScale && Math.abs(scale - centeredScale) < 0.01;
+  const isAtCenteredZoom =
+    centeredScale && Math.abs(scale - centeredScale) < 0.01;
 
   const shouldBeHidden = isAtTop && isAtCenteredZoom;
 
@@ -63,7 +64,7 @@ loadingTask.promise
     pdf = _pdf;
     return pdf.getPage(1);
   })
-  .then((page) => {
+  .then(() => {
     // Start with centered view
     center();
 
@@ -149,7 +150,7 @@ function center() {
         0,
         (document.getElementById("resume-canvas").offsetWidth -
           canvasWrap.offsetWidth) /
-        2
+          2
       );
       checkCenteredState();
     }, 50);
@@ -480,7 +481,7 @@ document.addEventListener("keydown", function (e) {
     e.target.tagName === "INPUT" ||
     e.target.tagName === "TEXTAREA" ||
     document.getElementById("links-dialog").getAttribute("aria-hidden") ===
-    "false"
+      "false"
   ) {
     return;
   }
