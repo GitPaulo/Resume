@@ -742,10 +742,39 @@ h1 {
   }
 }
 
-#too-small-message {
+#too-small-message,
+#too-large-message {
   display: none;
-  color: red;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.98);
+  padding: 2em 2.5em;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--elev-lg);
+  z-index: 1001;
   font-family: var(--font-base);
+  text-align: center;
+  animation: fade-in 0.3s ease-in-out;
+  max-width: 90%;
+}
+
+#too-small-message p,
+#too-large-message p {
+  margin: 0 0 1em 0;
+  color: #000;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+#too-small-message img,
+#too-large-message img {
+  width: 150px;
+  height: auto;
+  border-radius: var(--radius-md);
+  margin: 0 auto;
+  display: block;
 }
 
 #resume-canvas {
@@ -759,6 +788,12 @@ h1 {
   cursor: pointer;
   transition: all var(--transition-fast);
   z-index: 10;
+}
+
+.dialog-container:not([aria-hidden="true"])~#canvas-wrap .pdf-link-highlight {
+  pointer-events: none;
+  background: rgba(128, 128, 128, 0.15);
+  border-color: rgba(128, 128, 128, 0.3);
 }
 
 .pdf-link-highlight:hover {
@@ -1008,17 +1043,15 @@ a {
   align-items: center;
   gap: 8px;
   padding: 12px 16px;
-  background: rgba(0, 0, 0, 0.05);
   border-radius: var(--radius-md);
   transition: all var(--transition-fast);
-  border: 1px solid rgba(0, 0, 0, 0.05);
   position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .link-item:hover {
-  background: rgba(0, 0, 0, 0.08);
-  border-color: rgba(0, 0, 0, 0.1);
   transform: translateX(2px);
+  border-color: rgba(0, 0, 0, 0.2);
 }
 
 .link-item a {
@@ -1062,10 +1095,16 @@ a {
   opacity: 0.6;
   min-width: 30px;
   width: 30px;
+  min-height: 30px;
+  height: 30px;
 }
 
 .copy-btn>* {
   filter: grayscale(1);
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .copy-btn:hover {
@@ -28736,6 +28775,7 @@ const loadingTask = pdfjs_dist__WEBPACK_IMPORTED_MODULE_3__.getDocument("resourc
 const MOBILE_SCALE = 0.75;
 const BROWSER_SCALE = 1.5;
 const TOO_SMALL_SCALE = 0.25;
+const TOO_LARGE_SCALE = 5.0;
 
 let scale;
 let pdf;
@@ -28817,12 +28857,21 @@ function toggleAttention(shouldAttention) {
 }
 
 function zoomIn(cscale) {
+  if (scale >= TOO_LARGE_SCALE) {
+    document.getElementById("too-large-message").style["display"] = "block";
+    return;
+  }
+
   if ((is_mobile__WEBPACK_IMPORTED_MODULE_2__() && scale > MOBILE_SCALE) || scale > BROWSER_SCALE) {
     document.getElementById("canvas-wrap").style["overflow"] = "auto";
   }
 
   if (scale <= TOO_SMALL_SCALE) {
     document.getElementById("too-small-message").style["display"] = "none";
+  }
+
+  if (scale >= TOO_LARGE_SCALE) {
+    document.getElementById("too-large-message").style["display"] = "none";
   }
 
   scale += cscale;

@@ -16,6 +16,7 @@ const loadingTask = pdfjsLib.getDocument("resources/paulo_resume.pdf");
 const MOBILE_SCALE = 0.75;
 const BROWSER_SCALE = 1.5;
 const TOO_SMALL_SCALE = 0.25;
+const TOO_LARGE_SCALE = 5.0;
 
 let scale;
 let pdf;
@@ -97,12 +98,21 @@ function toggleAttention(shouldAttention) {
 }
 
 function zoomIn(cscale) {
+  if (scale >= TOO_LARGE_SCALE) {
+    document.getElementById("too-large-message").style["display"] = "block";
+    return;
+  }
+
   if ((isMobile() && scale > MOBILE_SCALE) || scale > BROWSER_SCALE) {
     document.getElementById("canvas-wrap").style["overflow"] = "auto";
   }
 
   if (scale <= TOO_SMALL_SCALE) {
     document.getElementById("too-small-message").style["display"] = "none";
+  }
+
+  if (scale >= TOO_LARGE_SCALE) {
+    document.getElementById("too-large-message").style["display"] = "none";
   }
 
   scale += cscale;
