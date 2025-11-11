@@ -790,7 +790,7 @@ h1 {
   z-index: 10;
 }
 
-.dialog-container:not([aria-hidden="true"])~#canvas-wrap .pdf-link-highlight {
+.dialog-container:not([aria-hidden="true"]) ~ #canvas-wrap .pdf-link-highlight {
   pointer-events: none;
   background: rgba(128, 128, 128, 0.15);
   border-color: rgba(128, 128, 128, 0.3);
@@ -871,7 +871,6 @@ h1 {
 }
 
 @keyframes flicker {
-
   0%,
   100% {
     outline: 2px solid transparent;
@@ -940,7 +939,7 @@ a {
   display: flex;
   position: fixed;
   inset: 0;
-  z-index: 2;
+  z-index: 10000;
 }
 
 .dialog-container[aria-hidden="true"] {
@@ -1099,7 +1098,7 @@ a {
   height: 30px;
 }
 
-.copy-btn>* {
+.copy-btn > * {
   filter: grayscale(1);
   line-height: 1;
   display: flex;
@@ -1245,7 +1244,6 @@ a {
 
 /* Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
-
   *,
   *::before,
   *::after {
@@ -1266,7 +1264,6 @@ a {
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
-
   .zoom_btn,
   .github-icon {
     border: 2px solid currentColor;
@@ -28782,6 +28779,7 @@ let pdf;
 let currentRenderTask = null;
 let isCentered = false;
 let centeredScale = null;
+let landscapeNotificationShown = false;
 
 function showUI() {
   const pdfContainer = document.getElementById("pdf-container");
@@ -28862,6 +28860,16 @@ function zoomIn(cscale) {
     return;
   }
 
+  // Show landscape notification on mobile if not in landscape and not shown before
+  if (
+    is_mobile__WEBPACK_IMPORTED_MODULE_2__() &&
+    !landscapeNotificationShown &&
+    window.innerWidth < window.innerHeight
+  ) {
+    landscapeNotificationShown = true;
+    notify("📱 Resume better viewed in landscape mode!");
+  }
+
   if ((is_mobile__WEBPACK_IMPORTED_MODULE_2__() && scale > MOBILE_SCALE) || scale > BROWSER_SCALE) {
     document.getElementById("canvas-wrap").style["overflow"] = "auto";
   }
@@ -28919,7 +28927,7 @@ function center() {
         0,
         (document.getElementById("resume-canvas").offsetWidth -
           canvasWrap.offsetWidth) /
-        2
+          2
       );
       checkCenteredState();
     }, 50);
@@ -29250,7 +29258,7 @@ document.addEventListener("keydown", function (e) {
     e.target.tagName === "INPUT" ||
     e.target.tagName === "TEXTAREA" ||
     document.getElementById("links-dialog").getAttribute("aria-hidden") ===
-    "false"
+      "false"
   ) {
     return;
   }

@@ -23,6 +23,7 @@ let pdf;
 let currentRenderTask = null;
 let isCentered = false;
 let centeredScale = null;
+let landscapeNotificationShown = false;
 
 function showUI() {
   const pdfContainer = document.getElementById("pdf-container");
@@ -103,6 +104,16 @@ function zoomIn(cscale) {
     return;
   }
 
+  // Show landscape notification on mobile if not in landscape and not shown before
+  if (
+    isMobile() &&
+    !landscapeNotificationShown &&
+    window.innerWidth < window.innerHeight
+  ) {
+    landscapeNotificationShown = true;
+    notify("📱 Resume better viewed in landscape mode!");
+  }
+
   if ((isMobile() && scale > MOBILE_SCALE) || scale > BROWSER_SCALE) {
     document.getElementById("canvas-wrap").style["overflow"] = "auto";
   }
@@ -160,7 +171,7 @@ function center() {
         0,
         (document.getElementById("resume-canvas").offsetWidth -
           canvasWrap.offsetWidth) /
-        2
+          2
       );
       checkCenteredState();
     }, 50);
@@ -491,7 +502,7 @@ document.addEventListener("keydown", function (e) {
     e.target.tagName === "INPUT" ||
     e.target.tagName === "TEXTAREA" ||
     document.getElementById("links-dialog").getAttribute("aria-hidden") ===
-    "false"
+      "false"
   ) {
     return;
   }
