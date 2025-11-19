@@ -13,7 +13,7 @@ const loadingTask = pdfjsLib.getDocument(PDF_URL);
 
 const MOBILE_SCALE = 0.75;
 const BROWSER_SCALE = 1.5;
-const TOO_SMALL_SCALE = 0.25;
+const TOO_SMALL_SCALE = 0.1;
 const TOO_LARGE_SCALE = 5.0;
 const RENDER_RESOLUTION = 1.6;
 const FIT_EPSILON = 0.01;
@@ -50,8 +50,10 @@ const debounce = (fn, ms) => {
   };
 };
 
-const isMobilePortrait = () => isMobile() && window.innerHeight > window.innerWidth;
-const isLinksDialogOpen = () => dialogEl?.getAttribute("aria-hidden") === "false";
+const isMobilePortrait = () =>
+  isMobile() && window.innerHeight > window.innerWidth;
+const isLinksDialogOpen = () =>
+  dialogEl?.getAttribute("aria-hidden") === "false";
 
 const getPage1 = async () => {
   if (!pdf) throw new Error("PDF not ready");
@@ -124,7 +126,9 @@ const updateZoomButtonsAllowed = async () => {
 
     // Account for 4rem padding on each side when not centered
     const isCentered = wrap.classList.contains("centered");
-    const paddingPx = isCentered ? 0 : parseFloat(getComputedStyle(wrap).fontSize) * 8;
+    const paddingPx = isCentered
+      ? 0
+      : parseFloat(getComputedStyle(wrap).fontSize) * 8;
     const availableWidth = wrap.clientWidth - paddingPx;
 
     zoomInBtn.disabled = !isCentered && nextWidth >= availableWidth;
@@ -203,7 +207,9 @@ const zoomIn = async (delta) => {
 
   // Account for 4rem padding on each side when not centered
   const isCentered = wrap.classList.contains("centered");
-  const paddingPx = isCentered ? 0 : parseFloat(getComputedStyle(wrap).fontSize) * 8;
+  const paddingPx = isCentered
+    ? 0
+    : parseFloat(getComputedStyle(wrap).fontSize) * 8;
   const availableWidth = wrap.clientWidth - paddingPx;
 
   // Prevent zoom if already scrollable and won't fit
@@ -365,9 +371,7 @@ const populateLinksList = async () => {
     if (!linksAreaEl || !linksCountEl) return;
 
     linksAreaEl.innerHTML = "";
-    const unique = new Set(
-      annotations.filter((a) => a.url).map((a) => a.url)
-    );
+    const unique = new Set(annotations.filter((a) => a.url).map((a) => a.url));
 
     const count = unique.size;
     linksCountEl.textContent = String(count);
@@ -440,12 +444,17 @@ const showUI = () => {
   if (pdfContainer) pdfContainer.classList.add("loaded");
   if (buttonArea) buttonArea.classList.add("visible");
   if (controls) controls.classList.add("visible");
-  if (canvasWrap) canvasWrap.addEventListener("scroll", debounce(checkFittedState, 150));
+  if (canvasWrap)
+    canvasWrap.addEventListener("scroll", debounce(checkFittedState, 150));
 };
 
-const toggleAttention = (enable) => {
-  for (const el of document.getElementsByClassName("zoom-btn")) {
-    el.classList.toggle("attention", !!enable);
+const toggleAttention = (enable, element = null) => {
+  if (element) {
+    element.classList.toggle("attention", !!enable);
+  } else {
+    for (const el of document.getElementsByClassName("zoom-btn")) {
+      el.classList.toggle("attention", !!enable);
+    }
   }
 };
 
@@ -586,12 +595,29 @@ const setupInput = () => {
 
 const setupUI = () => {
   setTimeout(showUI, 100);
-  window.addEventListener("resize", debounce(fit, 100));
 
-  if (!isMobile()) return;
+  // Mobile: only refit on width changes (ignore height from browser chrome)
+  // Desktop: refit on any resize
+  let lastWidth = window.innerWidth;
+  window.addEventListener(
+    "resize",
+    debounce(() => {
+      const currentWidth = window.innerWidth;
+      if (!isMobile() || currentWidth !== lastWidth) {
+        lastWidth = currentWidth;
+        fit();
+      }
+    }, 100)
+  );
 
-  toggleAttention(true);
-  notify("Hi 📱, please use the controls above.", () => toggleAttention(false));
+  if (isMobile()) {
+    const downloadBtn = byId("b2");
+    toggleAttention(true, downloadBtn);
+    notify(
+      "Hi 📱, for a better experience click the download button or turn landscape.",
+      () => toggleAttention(false, downloadBtn)
+    );
+  }
 };
 
 const openLinks = () => {

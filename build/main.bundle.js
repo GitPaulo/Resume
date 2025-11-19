@@ -717,7 +717,9 @@ h1 {
   position: relative;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease-in-out, visibility 0s 0.3s;
+  transition:
+    opacity 0.3s ease-in-out,
+    visibility 0s 0.3s;
 }
 
 #pdf-container.loaded {
@@ -811,7 +813,7 @@ h1 {
   z-index: 10;
 }
 
-.dialog-container:not([aria-hidden="true"])~#canvas-wrap .pdf-link-highlight {
+.dialog-container:not([aria-hidden="true"]) ~ #canvas-wrap .pdf-link-highlight {
   pointer-events: none;
   background: rgba(128, 128, 128, 0.15);
   border-color: rgba(128, 128, 128, 0.3);
@@ -907,7 +909,6 @@ h1 {
 }
 
 @keyframes flicker {
-
   0%,
   100% {
     outline: 2px solid transparent;
@@ -1135,7 +1136,7 @@ a {
   height: 30px;
 }
 
-.copy-btn>* {
+.copy-btn > * {
   filter: grayscale(1);
   line-height: 1;
   display: flex;
@@ -1289,7 +1290,6 @@ a {
 
 /* Hide zoom buttons in mobile portrait mode only */
 @media only screen and (max-width: 750px) and (orientation: portrait) {
-
   #b1,
   #b5 {
     display: none;
@@ -1298,7 +1298,6 @@ a {
 
 /* Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
-
   *,
   *::before,
   *::after {
@@ -1319,7 +1318,6 @@ a {
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
-
   .zoom_btn,
   .github-icon {
     border: 2px solid currentColor;
@@ -28825,7 +28823,7 @@ const loadingTask = pdfjs_dist__WEBPACK_IMPORTED_MODULE_1__.getDocument(PDF_URL)
 
 const MOBILE_SCALE = 0.75;
 const BROWSER_SCALE = 1.5;
-const TOO_SMALL_SCALE = 0.25;
+const TOO_SMALL_SCALE = 0.1;
 const TOO_LARGE_SCALE = 5.0;
 const RENDER_RESOLUTION = 1.6;
 const FIT_EPSILON = 0.01;
@@ -28862,8 +28860,10 @@ const debounce = (fn, ms) => {
   };
 };
 
-const isMobilePortrait = () => is_mobile__WEBPACK_IMPORTED_MODULE_3__() && window.innerHeight > window.innerWidth;
-const isLinksDialogOpen = () => dialogEl?.getAttribute("aria-hidden") === "false";
+const isMobilePortrait = () =>
+  is_mobile__WEBPACK_IMPORTED_MODULE_3__() && window.innerHeight > window.innerWidth;
+const isLinksDialogOpen = () =>
+  dialogEl?.getAttribute("aria-hidden") === "false";
 
 const getPage1 = async () => {
   if (!pdf) throw new Error("PDF not ready");
@@ -28936,7 +28936,9 @@ const updateZoomButtonsAllowed = async () => {
 
     // Account for 4rem padding on each side when not centered
     const isCentered = wrap.classList.contains("centered");
-    const paddingPx = isCentered ? 0 : parseFloat(getComputedStyle(wrap).fontSize) * 8;
+    const paddingPx = isCentered
+      ? 0
+      : parseFloat(getComputedStyle(wrap).fontSize) * 8;
     const availableWidth = wrap.clientWidth - paddingPx;
 
     zoomInBtn.disabled = !isCentered && nextWidth >= availableWidth;
@@ -29015,7 +29017,9 @@ const zoomIn = async (delta) => {
 
   // Account for 4rem padding on each side when not centered
   const isCentered = wrap.classList.contains("centered");
-  const paddingPx = isCentered ? 0 : parseFloat(getComputedStyle(wrap).fontSize) * 8;
+  const paddingPx = isCentered
+    ? 0
+    : parseFloat(getComputedStyle(wrap).fontSize) * 8;
   const availableWidth = wrap.clientWidth - paddingPx;
 
   // Prevent zoom if already scrollable and won't fit
@@ -29177,9 +29181,7 @@ const populateLinksList = async () => {
     if (!linksAreaEl || !linksCountEl) return;
 
     linksAreaEl.innerHTML = "";
-    const unique = new Set(
-      annotations.filter((a) => a.url).map((a) => a.url)
-    );
+    const unique = new Set(annotations.filter((a) => a.url).map((a) => a.url));
 
     const count = unique.size;
     linksCountEl.textContent = String(count);
@@ -29252,12 +29254,17 @@ const showUI = () => {
   if (pdfContainer) pdfContainer.classList.add("loaded");
   if (buttonArea) buttonArea.classList.add("visible");
   if (controls) controls.classList.add("visible");
-  if (canvasWrap) canvasWrap.addEventListener("scroll", debounce(checkFittedState, 150));
+  if (canvasWrap)
+    canvasWrap.addEventListener("scroll", debounce(checkFittedState, 150));
 };
 
-const toggleAttention = (enable) => {
-  for (const el of document.getElementsByClassName("zoom-btn")) {
-    el.classList.toggle("attention", !!enable);
+const toggleAttention = (enable, element = null) => {
+  if (element) {
+    element.classList.toggle("attention", !!enable);
+  } else {
+    for (const el of document.getElementsByClassName("zoom-btn")) {
+      el.classList.toggle("attention", !!enable);
+    }
   }
 };
 
@@ -29398,12 +29405,29 @@ const setupInput = () => {
 
 const setupUI = () => {
   setTimeout(showUI, 100);
-  window.addEventListener("resize", debounce(fit, 100));
 
-  if (!is_mobile__WEBPACK_IMPORTED_MODULE_3__()) return;
+  // Mobile: only refit on width changes (ignore height from browser chrome)
+  // Desktop: refit on any resize
+  let lastWidth = window.innerWidth;
+  window.addEventListener(
+    "resize",
+    debounce(() => {
+      const currentWidth = window.innerWidth;
+      if (!is_mobile__WEBPACK_IMPORTED_MODULE_3__() || currentWidth !== lastWidth) {
+        lastWidth = currentWidth;
+        fit();
+      }
+    }, 100)
+  );
 
-  toggleAttention(true);
-  notify("Hi 📱, please use the controls above.", () => toggleAttention(false));
+  if (is_mobile__WEBPACK_IMPORTED_MODULE_3__()) {
+    const downloadBtn = byId("b2");
+    toggleAttention(true, downloadBtn);
+    notify(
+      "Hi 📱, for a better experience click the download button or turn landscape.",
+      () => toggleAttention(false, downloadBtn)
+    );
+  }
 };
 
 const openLinks = () => {
