@@ -30,8 +30,7 @@
     "a11y-dialog": "^8.1.4",
     "is-mobile": "^5.0.0",
     "normalize.css": "^8.0.1",
-    "pdfjs-dist": "^5.4.394",
-    "toastify-js": "^1.12.0"
+    "pdfjs-dist": "^5.4.394"
   },
   "devDependencies": {
     "css-loader": "^7.1.2",

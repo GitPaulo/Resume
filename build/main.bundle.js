@@ -1,4 +1,5 @@
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./css/style.css":
@@ -7,7 +8,6 @@
   \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -60,7 +60,6 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
   \**********************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ A11yDialog)
@@ -554,7 +553,6 @@ if (typeof document !== 'undefined') {
   \*************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -563,13 +561,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_node_modules_toastify_js_src_toastify_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! -!../node_modules/css-loader/dist/cjs.js!../node_modules/toastify-js/src/toastify.css */ "./node_modules/css-loader/dist/cjs.js!./node_modules/toastify-js/src/toastify.css");
 // Imports
 
 
-
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
-___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_node_modules_toastify_js_src_toastify_css__WEBPACK_IMPORTED_MODULE_2__["default"]);
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Roboto);"]);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `:root {
@@ -813,7 +808,7 @@ h1 {
   z-index: 10;
 }
 
-.dialog-container:not([aria-hidden="true"]) ~ #canvas-wrap .pdf-link-highlight {
+.dialog-container:not([aria-hidden="true"])~#canvas-wrap .pdf-link-highlight {
   pointer-events: none;
   background: rgba(128, 128, 128, 0.15);
   border-color: rgba(128, 128, 128, 0.3);
@@ -894,10 +889,6 @@ h1 {
   outline-offset: 2px;
 }
 
-.zoom-btn.attention {
-  animation: flicker 0.8s ease-in-out infinite;
-}
-
 /* Center button hide/show animation */
 #b3.hidden {
   animation: bounceOut 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
@@ -909,6 +900,7 @@ h1 {
 }
 
 @keyframes flicker {
+
   0%,
   100% {
     outline: 2px solid transparent;
@@ -954,12 +946,6 @@ h1 {
     transform: scale(1) translateY(0);
     opacity: 1;
   }
-}
-
-.toast {
-  font-family: var(--font-base) !important;
-  background: var(--color-primary) !important;
-  color: white !important;
 }
 
 /*
@@ -1036,7 +1022,7 @@ a {
 
 .links-count {
   display: inline-block;
-  background: black;
+  background: #3282ff;
   color: white;
   font-size: 0.65em;
   padding: 4px 12px;
@@ -1136,7 +1122,7 @@ a {
   height: 30px;
 }
 
-.copy-btn > * {
+.copy-btn>* {
   filter: grayscale(1);
   line-height: 1;
   display: flex;
@@ -1290,6 +1276,7 @@ a {
 
 /* Hide zoom buttons in mobile portrait mode only */
 @media only screen and (max-width: 750px) and (orientation: portrait) {
+
   #b1,
   #b5 {
     display: none;
@@ -1298,6 +1285,7 @@ a {
 
 /* Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -1307,10 +1295,6 @@ a {
     scroll-behavior: auto !important;
   }
 
-  .zoom_btn.attention {
-    animation: none;
-  }
-
   .github-icon:hover svg {
     transform: none;
   }
@@ -1318,6 +1302,7 @@ a {
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
+
   .zoom_btn,
   .github-icon {
     border: 2px solid currentColor;
@@ -1338,125 +1323,12 @@ a {
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/toastify-js/src/toastify.css":
-/*!*****************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/toastify-js/src/toastify.css ***!
-  \*****************************************************************************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../css-loader/dist/runtime/noSourceMaps.js */ "./node_modules/css-loader/dist/runtime/noSourceMaps.js");
-/* harmony import */ var _css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
-/* harmony import */ var _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
-// Imports
-
-
-var ___CSS_LOADER_EXPORT___ = _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, `/*!
- * Toastify js 1.12.0
- * https://github.com/apvarun/toastify-js
- * @license MIT licensed
- *
- * Copyright (C) 2018 Varun A P
- */
-
-.toastify {
-    padding: 12px 20px;
-    color: #ffffff;
-    display: inline-block;
-    box-shadow: 0 3px 6px -1px rgba(0, 0, 0, 0.12), 0 10px 36px -4px rgba(77, 96, 232, 0.3);
-    background: -webkit-linear-gradient(315deg, #73a5ff, #5477f5);
-    background: linear-gradient(135deg, #73a5ff, #5477f5);
-    position: fixed;
-    opacity: 0;
-    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
-    border-radius: 2px;
-    cursor: pointer;
-    text-decoration: none;
-    max-width: calc(50% - 20px);
-    z-index: 2147483647;
-}
-
-.toastify.on {
-    opacity: 1;
-}
-
-.toast-close {
-    background: transparent;
-    border: 0;
-    color: white;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 1em;
-    opacity: 0.4;
-    padding: 0 5px;
-}
-
-.toastify-right {
-    right: 15px;
-}
-
-.toastify-left {
-    left: 15px;
-}
-
-.toastify-top {
-    top: -150px;
-}
-
-.toastify-bottom {
-    bottom: -150px;
-}
-
-.toastify-rounded {
-    border-radius: 25px;
-}
-
-.toastify-avatar {
-    width: 1.5em;
-    height: 1.5em;
-    margin: -7px 5px;
-    border-radius: 2px;
-}
-
-.toastify-center {
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-    max-width: fit-content;
-    max-width: -moz-fit-content;
-}
-
-@media only screen and (max-width: 360px) {
-    .toastify-right, .toastify-left {
-        margin-left: auto;
-        margin-right: auto;
-        left: 0;
-        right: 0;
-        max-width: fit-content;
-    }
-}
-`, ""]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
-
-/***/ }),
-
 /***/ "./node_modules/css-loader/dist/runtime/api.js":
 /*!*****************************************************!*\
   !*** ./node_modules/css-loader/dist/runtime/api.js ***!
   \*****************************************************/
 /***/ ((module) => {
 
-"use strict";
 
 
 /*
@@ -1551,7 +1423,6 @@ module.exports = function (cssWithMappingToString) {
   \**************************************************************/
 /***/ ((module) => {
 
-"use strict";
 
 
 module.exports = function (i) {
@@ -1566,7 +1437,6 @@ module.exports = function (i) {
   \*****************************************/
 /***/ ((module) => {
 
-"use strict";
 
 
 module.exports = isMobile
@@ -1615,7 +1485,6 @@ function isMobile (opts) {
   \***********************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   AbortException: () => (/* binding */ AbortException),
@@ -28000,7 +27869,6 @@ globalThis.pdfjsLib = {
   \****************************************************************************/
 /***/ ((module) => {
 
-"use strict";
 
 
 var stylesInDOM = [];
@@ -28094,7 +27962,6 @@ module.exports = function (list, options) {
   \********************************************************************/
 /***/ ((module) => {
 
-"use strict";
 
 
 var memo = {};
@@ -28138,7 +28005,6 @@ module.exports = insertBySelector;
   \**********************************************************************/
 /***/ ((module) => {
 
-"use strict";
 
 
 /* istanbul ignore next  */
@@ -28158,7 +28024,6 @@ module.exports = insertStyleElement;
   \**********************************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 
 
 /* istanbul ignore next  */
@@ -28178,7 +28043,6 @@ module.exports = setAttributesWithoutAttributes;
   \***************************************************************/
 /***/ ((module) => {
 
-"use strict";
 
 
 /* istanbul ignore next  */
@@ -28249,7 +28113,6 @@ module.exports = domAPI;
   \*********************************************************************/
 /***/ ((module) => {
 
-"use strict";
 
 
 /* istanbul ignore next  */
@@ -28264,461 +28127,6 @@ function styleTagTransform(css, styleElement) {
   }
 }
 module.exports = styleTagTransform;
-
-/***/ }),
-
-/***/ "./node_modules/toastify-js/src/toastify.js":
-/*!**************************************************!*\
-  !*** ./node_modules/toastify-js/src/toastify.js ***!
-  \**************************************************/
-/***/ (function(module) {
-
-/*!
- * Toastify js 1.12.0
- * https://github.com/apvarun/toastify-js
- * @license MIT licensed
- *
- * Copyright (C) 2018 Varun A P
- */
-(function(root, factory) {
-  if ( true && module.exports) {
-    module.exports = factory();
-  } else {
-    root.Toastify = factory();
-  }
-})(this, function(global) {
-  // Object initialization
-  var Toastify = function(options) {
-      // Returning a new init object
-      return new Toastify.lib.init(options);
-    },
-    // Library version
-    version = "1.12.0";
-
-  // Set the default global options
-  Toastify.defaults = {
-    oldestFirst: true,
-    text: "Toastify is awesome!",
-    node: undefined,
-    duration: 3000,
-    selector: undefined,
-    callback: function () {
-    },
-    destination: undefined,
-    newWindow: false,
-    close: false,
-    gravity: "toastify-top",
-    positionLeft: false,
-    position: '',
-    backgroundColor: '',
-    avatar: "",
-    className: "",
-    stopOnFocus: true,
-    onClick: function () {
-    },
-    offset: {x: 0, y: 0},
-    escapeMarkup: true,
-    ariaLive: 'polite',
-    style: {background: ''}
-  };
-
-  // Defining the prototype of the object
-  Toastify.lib = Toastify.prototype = {
-    toastify: version,
-
-    constructor: Toastify,
-
-    // Initializing the object with required parameters
-    init: function(options) {
-      // Verifying and validating the input object
-      if (!options) {
-        options = {};
-      }
-
-      // Creating the options object
-      this.options = {};
-
-      this.toastElement = null;
-
-      // Validating the options
-      this.options.text = options.text || Toastify.defaults.text; // Display message
-      this.options.node = options.node || Toastify.defaults.node;  // Display content as node
-      this.options.duration = options.duration === 0 ? 0 : options.duration || Toastify.defaults.duration; // Display duration
-      this.options.selector = options.selector || Toastify.defaults.selector; // Parent selector
-      this.options.callback = options.callback || Toastify.defaults.callback; // Callback after display
-      this.options.destination = options.destination || Toastify.defaults.destination; // On-click destination
-      this.options.newWindow = options.newWindow || Toastify.defaults.newWindow; // Open destination in new window
-      this.options.close = options.close || Toastify.defaults.close; // Show toast close icon
-      this.options.gravity = options.gravity === "bottom" ? "toastify-bottom" : Toastify.defaults.gravity; // toast position - top or bottom
-      this.options.positionLeft = options.positionLeft || Toastify.defaults.positionLeft; // toast position - left or right
-      this.options.position = options.position || Toastify.defaults.position; // toast position - left or right
-      this.options.backgroundColor = options.backgroundColor || Toastify.defaults.backgroundColor; // toast background color
-      this.options.avatar = options.avatar || Toastify.defaults.avatar; // img element src - url or a path
-      this.options.className = options.className || Toastify.defaults.className; // additional class names for the toast
-      this.options.stopOnFocus = options.stopOnFocus === undefined ? Toastify.defaults.stopOnFocus : options.stopOnFocus; // stop timeout on focus
-      this.options.onClick = options.onClick || Toastify.defaults.onClick; // Callback after click
-      this.options.offset = options.offset || Toastify.defaults.offset; // toast offset
-      this.options.escapeMarkup = options.escapeMarkup !== undefined ? options.escapeMarkup : Toastify.defaults.escapeMarkup;
-      this.options.ariaLive = options.ariaLive || Toastify.defaults.ariaLive;
-      this.options.style = options.style || Toastify.defaults.style;
-      if(options.backgroundColor) {
-        this.options.style.background = options.backgroundColor;
-      }
-
-      // Returning the current object for chaining functions
-      return this;
-    },
-
-    // Building the DOM element
-    buildToast: function() {
-      // Validating if the options are defined
-      if (!this.options) {
-        throw "Toastify is not initialized";
-      }
-
-      // Creating the DOM object
-      var divElement = document.createElement("div");
-      divElement.className = "toastify on " + this.options.className;
-
-      // Positioning toast to left or right or center
-      if (!!this.options.position) {
-        divElement.className += " toastify-" + this.options.position;
-      } else {
-        // To be depreciated in further versions
-        if (this.options.positionLeft === true) {
-          divElement.className += " toastify-left";
-          console.warn('Property `positionLeft` will be depreciated in further versions. Please use `position` instead.')
-        } else {
-          // Default position
-          divElement.className += " toastify-right";
-        }
-      }
-
-      // Assigning gravity of element
-      divElement.className += " " + this.options.gravity;
-
-      if (this.options.backgroundColor) {
-        // This is being deprecated in favor of using the style HTML DOM property
-        console.warn('DEPRECATION NOTICE: "backgroundColor" is being deprecated. Please use the "style.background" property.');
-      }
-
-      // Loop through our style object and apply styles to divElement
-      for (var property in this.options.style) {
-        divElement.style[property] = this.options.style[property];
-      }
-
-      // Announce the toast to screen readers
-      if (this.options.ariaLive) {
-        divElement.setAttribute('aria-live', this.options.ariaLive)
-      }
-
-      // Adding the toast message/node
-      if (this.options.node && this.options.node.nodeType === Node.ELEMENT_NODE) {
-        // If we have a valid node, we insert it
-        divElement.appendChild(this.options.node)
-      } else {
-        if (this.options.escapeMarkup) {
-          divElement.innerText = this.options.text;
-        } else {
-          divElement.innerHTML = this.options.text;
-        }
-
-        if (this.options.avatar !== "") {
-          var avatarElement = document.createElement("img");
-          avatarElement.src = this.options.avatar;
-
-          avatarElement.className = "toastify-avatar";
-
-          if (this.options.position == "left" || this.options.positionLeft === true) {
-            // Adding close icon on the left of content
-            divElement.appendChild(avatarElement);
-          } else {
-            // Adding close icon on the right of content
-            divElement.insertAdjacentElement("afterbegin", avatarElement);
-          }
-        }
-      }
-
-      // Adding a close icon to the toast
-      if (this.options.close === true) {
-        // Create a span for close element
-        var closeElement = document.createElement("button");
-        closeElement.type = "button";
-        closeElement.setAttribute("aria-label", "Close");
-        closeElement.className = "toast-close";
-        closeElement.innerHTML = "&#10006;";
-
-        // Triggering the removal of toast from DOM on close click
-        closeElement.addEventListener(
-          "click",
-          function(event) {
-            event.stopPropagation();
-            this.removeElement(this.toastElement);
-            window.clearTimeout(this.toastElement.timeOutValue);
-          }.bind(this)
-        );
-
-        //Calculating screen width
-        var width = window.innerWidth > 0 ? window.innerWidth : screen.width;
-
-        // Adding the close icon to the toast element
-        // Display on the right if screen width is less than or equal to 360px
-        if ((this.options.position == "left" || this.options.positionLeft === true) && width > 360) {
-          // Adding close icon on the left of content
-          divElement.insertAdjacentElement("afterbegin", closeElement);
-        } else {
-          // Adding close icon on the right of content
-          divElement.appendChild(closeElement);
-        }
-      }
-
-      // Clear timeout while toast is focused
-      if (this.options.stopOnFocus && this.options.duration > 0) {
-        var self = this;
-        // stop countdown
-        divElement.addEventListener(
-          "mouseover",
-          function(event) {
-            window.clearTimeout(divElement.timeOutValue);
-          }
-        )
-        // add back the timeout
-        divElement.addEventListener(
-          "mouseleave",
-          function() {
-            divElement.timeOutValue = window.setTimeout(
-              function() {
-                // Remove the toast from DOM
-                self.removeElement(divElement);
-              },
-              self.options.duration
-            )
-          }
-        )
-      }
-
-      // Adding an on-click destination path
-      if (typeof this.options.destination !== "undefined") {
-        divElement.addEventListener(
-          "click",
-          function(event) {
-            event.stopPropagation();
-            if (this.options.newWindow === true) {
-              window.open(this.options.destination, "_blank");
-            } else {
-              window.location = this.options.destination;
-            }
-          }.bind(this)
-        );
-      }
-
-      if (typeof this.options.onClick === "function" && typeof this.options.destination === "undefined") {
-        divElement.addEventListener(
-          "click",
-          function(event) {
-            event.stopPropagation();
-            this.options.onClick();
-          }.bind(this)
-        );
-      }
-
-      // Adding offset
-      if(typeof this.options.offset === "object") {
-
-        var x = getAxisOffsetAValue("x", this.options);
-        var y = getAxisOffsetAValue("y", this.options);
-
-        var xOffset = this.options.position == "left" ? x : "-" + x;
-        var yOffset = this.options.gravity == "toastify-top" ? y : "-" + y;
-
-        divElement.style.transform = "translate(" + xOffset + "," + yOffset + ")";
-
-      }
-
-      // Returning the generated element
-      return divElement;
-    },
-
-    // Displaying the toast
-    showToast: function() {
-      // Creating the DOM object for the toast
-      this.toastElement = this.buildToast();
-
-      // Getting the root element to with the toast needs to be added
-      var rootElement;
-      if (typeof this.options.selector === "string") {
-        rootElement = document.getElementById(this.options.selector);
-      } else if (this.options.selector instanceof HTMLElement || (typeof ShadowRoot !== 'undefined' && this.options.selector instanceof ShadowRoot)) {
-        rootElement = this.options.selector;
-      } else {
-        rootElement = document.body;
-      }
-
-      // Validating if root element is present in DOM
-      if (!rootElement) {
-        throw "Root element is not defined";
-      }
-
-      // Adding the DOM element
-      var elementToInsert = Toastify.defaults.oldestFirst ? rootElement.firstChild : rootElement.lastChild;
-      rootElement.insertBefore(this.toastElement, elementToInsert);
-
-      // Repositioning the toasts in case multiple toasts are present
-      Toastify.reposition();
-
-      if (this.options.duration > 0) {
-        this.toastElement.timeOutValue = window.setTimeout(
-          function() {
-            // Remove the toast from DOM
-            this.removeElement(this.toastElement);
-          }.bind(this),
-          this.options.duration
-        ); // Binding `this` for function invocation
-      }
-
-      // Supporting function chaining
-      return this;
-    },
-
-    hideToast: function() {
-      if (this.toastElement.timeOutValue) {
-        clearTimeout(this.toastElement.timeOutValue);
-      }
-      this.removeElement(this.toastElement);
-    },
-
-    // Removing the element from the DOM
-    removeElement: function(toastElement) {
-      // Hiding the element
-      // toastElement.classList.remove("on");
-      toastElement.className = toastElement.className.replace(" on", "");
-
-      // Removing the element from DOM after transition end
-      window.setTimeout(
-        function() {
-          // remove options node if any
-          if (this.options.node && this.options.node.parentNode) {
-            this.options.node.parentNode.removeChild(this.options.node);
-          }
-
-          // Remove the element from the DOM, only when the parent node was not removed before.
-          if (toastElement.parentNode) {
-            toastElement.parentNode.removeChild(toastElement);
-          }
-
-          // Calling the callback function
-          this.options.callback.call(toastElement);
-
-          // Repositioning the toasts again
-          Toastify.reposition();
-        }.bind(this),
-        400
-      ); // Binding `this` for function invocation
-    },
-  };
-
-  // Positioning the toasts on the DOM
-  Toastify.reposition = function() {
-
-    // Top margins with gravity
-    var topLeftOffsetSize = {
-      top: 15,
-      bottom: 15,
-    };
-    var topRightOffsetSize = {
-      top: 15,
-      bottom: 15,
-    };
-    var offsetSize = {
-      top: 15,
-      bottom: 15,
-    };
-
-    // Get all toast messages on the DOM
-    var allToasts = document.getElementsByClassName("toastify");
-
-    var classUsed;
-
-    // Modifying the position of each toast element
-    for (var i = 0; i < allToasts.length; i++) {
-      // Getting the applied gravity
-      if (containsClass(allToasts[i], "toastify-top") === true) {
-        classUsed = "toastify-top";
-      } else {
-        classUsed = "toastify-bottom";
-      }
-
-      var height = allToasts[i].offsetHeight;
-      classUsed = classUsed.substr(9, classUsed.length-1)
-      // Spacing between toasts
-      var offset = 15;
-
-      var width = window.innerWidth > 0 ? window.innerWidth : screen.width;
-
-      // Show toast in center if screen with less than or equal to 360px
-      if (width <= 360) {
-        // Setting the position
-        allToasts[i].style[classUsed] = offsetSize[classUsed] + "px";
-
-        offsetSize[classUsed] += height + offset;
-      } else {
-        if (containsClass(allToasts[i], "toastify-left") === true) {
-          // Setting the position
-          allToasts[i].style[classUsed] = topLeftOffsetSize[classUsed] + "px";
-
-          topLeftOffsetSize[classUsed] += height + offset;
-        } else {
-          // Setting the position
-          allToasts[i].style[classUsed] = topRightOffsetSize[classUsed] + "px";
-
-          topRightOffsetSize[classUsed] += height + offset;
-        }
-      }
-    }
-
-    // Supporting function chaining
-    return this;
-  };
-
-  // Helper function to get offset.
-  function getAxisOffsetAValue(axis, options) {
-
-    if(options.offset[axis]) {
-      if(isNaN(options.offset[axis])) {
-        return options.offset[axis];
-      }
-      else {
-        return options.offset[axis] + 'px';
-      }
-    }
-
-    return '0px';
-
-  }
-
-  function containsClass(elem, yourClass) {
-    if (!elem || typeof yourClass !== "string") {
-      return false;
-    } else if (
-      elem.className &&
-      elem.className
-        .trim()
-        .split(/\s+/gi)
-        .indexOf(yourClass) > -1
-    ) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  // Setting up the prototype for the init object
-  Toastify.lib.init.prototype = Toastify.lib;
-
-  // Returning the Toastify function to be assigned to the window object/module
-  return Toastify;
-});
-
 
 /***/ })
 
@@ -28742,7 +28150,7 @@ module.exports = styleTagTransform;
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
@@ -28796,9 +28204,8 @@ module.exports = styleTagTransform;
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
 (() => {
-"use strict";
 /*!********************!*\
   !*** ./js/main.js ***!
   \********************/
@@ -28807,61 +28214,56 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var pdfjs_dist__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! pdfjs-dist */ "./node_modules/pdfjs-dist/build/pdf.mjs");
 /* harmony import */ var a11y_dialog__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! a11y-dialog */ "./node_modules/a11y-dialog/dist/a11y-dialog.esm.js");
 /* harmony import */ var is_mobile__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! is-mobile */ "./node_modules/is-mobile/index.js");
-/* harmony import */ var toastify_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! toastify-js */ "./node_modules/toastify-js/src/toastify.js");
 
 
 
 
 
 
-
-// PDF worker
 pdfjs_dist__WEBPACK_IMPORTED_MODULE_1__.GlobalWorkerOptions.workerSrc = "build/main.bundle.worker.js";
 
 const PDF_URL = "resources/paulo_resume.pdf";
-const loadingTask = pdfjs_dist__WEBPACK_IMPORTED_MODULE_1__.getDocument(PDF_URL);
 
+// Scale constraints
+const SCALE_STEP = 0.25;
 const MOBILE_SCALE = 0.75;
 const BROWSER_SCALE = 1.5;
-const TOO_SMALL_SCALE = 0.1;
-const TOO_LARGE_SCALE = 5.0;
+const MIN_SCALE = 0.1;
+const MAX_SCALE = 5.0;
+
+// Render resolution and fitting tolerance
 const RENDER_RESOLUTION = 1.6;
 const FIT_EPSILON = 0.01;
 
+// UI layout constants
+const SCROLLBAR_WIDTH = 15;
+const PADDING_REM = 4;
+const LINK_HIGHLIGHT_CLASS = "pdf-link-highlight";
+
+// State
 let pdf = null;
 let scale = 1;
 let fittedScale = null;
 let isFitted = false;
 let currentRenderTask = null;
 
-// Dialog state
+// Dialog
 let dialog = null;
 let dialogEl = null;
 
 const byId = (id) => document.getElementById(id);
 
-const notify = (text, cb) => {
-  toastify_js__WEBPACK_IMPORTED_MODULE_4__({
-    text,
-    duration: 3000,
-    className: "toast",
-    gravity: "bottom",
-    position: "center",
-    stopOnFocus: true,
-    callback: cb,
-  }).showToast();
-};
-
-const debounce = (fn, ms) => {
-  let t = null;
+const debounce = (fn, delay) => {
+  let timer = null;
   return (...args) => {
-    if (t) clearTimeout(t);
-    t = setTimeout(() => fn(...args), ms);
+    clearTimeout(timer);
+    timer = setTimeout(() => fn(...args), delay);
   };
 };
 
 const isMobilePortrait = () =>
   is_mobile__WEBPACK_IMPORTED_MODULE_3__() && window.innerHeight > window.innerWidth;
+
 const isLinksDialogOpen = () =>
   dialogEl?.getAttribute("aria-hidden") === "false";
 
@@ -28870,49 +28272,31 @@ const getPage1 = async () => {
   return pdf.getPage(1);
 };
 
-const hideLinkHighlights = () => {
-  document.querySelectorAll(".pdf-link-highlight").forEach((el) => {
-    el.remove();
-  });
+const clearHighlights = () => {
+  document
+    .querySelectorAll(`.${LINK_HIGHLIGHT_CLASS}`)
+    .forEach((el) => el.remove());
 };
 
-const showLinkHighlights = () => {
-  document.querySelectorAll(".pdf-link-highlight").forEach((el) => {
-    el.style.opacity = "1";
-  });
+const showHighlights = () => {
+  document
+    .querySelectorAll(`.${LINK_HIGHLIGHT_CLASS}`)
+    .forEach((el) => (el.style.opacity = "1"));
 };
 
 const updateScaleMessages = () => {
-  const small = byId("too-small-message");
-  const large = byId("too-large-message");
+  const tooSmall = byId("too-small-message");
+  const tooLarge = byId("too-large-message");
 
-  if (small) small.style.display = scale <= TOO_SMALL_SCALE ? "block" : "none";
-  if (large) large.style.display = scale >= TOO_LARGE_SCALE ? "block" : "none";
+  if (tooSmall) tooSmall.style.display = scale <= MIN_SCALE ? "block" : "none";
+  if (tooLarge) tooLarge.style.display = scale >= MAX_SCALE ? "block" : "none";
 };
 
-const checkFittedState = () => {
-  const wrap = byId("canvas-wrap");
-  const fitBtn = byId("b3");
-
-  if (!wrap || !fitBtn || fittedScale == null) return;
-  if (wrap.scrollTop < 0) return;
-
-  const isAtTop = wrap.scrollTop <= 10;
-  const isAtFittedZoom = Math.abs(scale - fittedScale) < FIT_EPSILON;
-  const isCentered = wrap.classList.contains("centered");
-  const shouldHideFit = isAtTop && isAtFittedZoom && isCentered;
-
-  if (shouldHideFit === isFitted) return;
-
-  isFitted = shouldHideFit;
-  fitBtn.classList.toggle("visible", !isFitted);
-  fitBtn.classList.toggle("hidden", isFitted);
-};
-
-const updateZoomButtonsAllowed = async () => {
+const updateZoomButtons = async () => {
   const wrap = byId("canvas-wrap");
   const zoomInBtn = byId("b1");
   const zoomOutBtn = byId("b5");
+
   if (!wrap || !zoomInBtn || !zoomOutBtn || !pdf) return;
 
   if (isMobilePortrait()) {
@@ -28921,140 +28305,54 @@ const updateZoomButtonsAllowed = async () => {
     return;
   }
 
-  zoomOutBtn.disabled = scale <= TOO_SMALL_SCALE;
+  zoomOutBtn.disabled = scale <= MIN_SCALE;
 
-  if (scale >= TOO_LARGE_SCALE) {
+  if (scale >= MAX_SCALE) {
     zoomInBtn.disabled = true;
     return;
   }
 
   try {
     const page = await getPage1();
-    const viewport = page.getViewport({ scale: 1.0 });
-    const nextScale = scale + 0.25;
+    const viewport = page.getViewport({ scale: 1 });
+
+    const nextScale = scale + SCALE_STEP;
     const nextWidth = viewport.width * nextScale;
 
-    // Account for 4rem padding on each side when not centered
     const isCentered = wrap.classList.contains("centered");
-    const paddingPx = isCentered
-      ? 0
-      : parseFloat(getComputedStyle(wrap).fontSize) * 8;
-    const availableWidth = wrap.clientWidth - paddingPx;
+    const fontSize = parseFloat(getComputedStyle(wrap).fontSize);
+    const paddingPx = fontSize * (PADDING_REM * 2);
 
-    zoomInBtn.disabled = !isCentered && nextWidth >= availableWidth;
+    const scrollbarWidth = isCentered ? SCROLLBAR_WIDTH : 0;
+    const available = wrap.clientWidth - paddingPx - scrollbarWidth;
+
+    const isDisabled = nextWidth > available;
+    zoomInBtn.disabled = isDisabled;
+    zoomInBtn.title = isDisabled
+      ? "Zoom in disabled due to viewport size"
+      : "Zoom In";
   } catch (err) {
-    console.error("Update zoom buttons error:", err);
+    console.error("Zoom button update error:", err);
   }
 };
 
-const renderWithCurrentScale = () => {
-  requestAnimationFrame(() => {
-    (async () => {
-      try {
-        const page = await getPage1();
-        await renderDocument(page, scale);
-        updateScaleMessages();
-        checkFittedState();
-        updateZoomButtonsAllowed();
-      } catch (err) {
-        console.error("Render with current scale error:", err);
-      }
-    })();
-  });
-};
-
-const fit = async () => {
-  const canvasWrap = byId("canvas-wrap");
-  if (!canvasWrap || !pdf) return;
-
-  hideLinkHighlights();
-  canvasWrap.classList.add("centered");
-  canvasWrap.style.removeProperty("overflow");
-
-  try {
-    const page = await getPage1();
-    const viewport1 = page.getViewport({ scale: 1.0 });
-
-    const w = canvasWrap.clientWidth * 0.99;
-    const h = canvasWrap.clientHeight * 0.99;
-
-    const scaleX = w / viewport1.width;
-    const scaleY = h / viewport1.height;
-    const fitScale = Math.min(scaleX, scaleY);
-
-    const minScale = is_mobile__WEBPACK_IMPORTED_MODULE_3__() ? 0.1 : 0.5;
-    scale = Math.max(minScale, Math.min(2.0, fitScale));
-    fittedScale = scale;
-
-    await renderDocument(page, scale);
-    canvasWrap.scrollTop = 0;
-    canvasWrap.scrollLeft = 0;
-    updateScaleMessages();
-    checkFittedState();
-    updateZoomButtonsAllowed();
-  } catch (err) {
-    console.error("Fit error:", err);
-  }
-};
-
-const zoomIn = async (delta) => {
-  if (isMobilePortrait()) return;
-
-  if (scale >= TOO_LARGE_SCALE) {
-    const msg = byId("too-large-message");
-    if (msg) msg.style.display = "block";
-    return;
-  }
-
+const checkFittedState = () => {
   const wrap = byId("canvas-wrap");
-  if (!wrap || !pdf) return;
+  const fitBtn = byId("b3");
+  if (!wrap || !fitBtn || fittedScale == null) return;
 
-  // Check if next scale will fit in viewport (x-axis only)
-  const page = await getPage1();
-  const viewport = page.getViewport({ scale: 1.0 });
-  const nextScale = Math.min(TOO_LARGE_SCALE, scale + delta);
-  const nextWidth = viewport.width * nextScale;
-
-  // Account for 4rem padding on each side when not centered
+  const isAtTop = wrap.scrollTop <= 10;
+  const isAtFittedZoom = Math.abs(scale - fittedScale) < FIT_EPSILON;
   const isCentered = wrap.classList.contains("centered");
-  const paddingPx = isCentered
-    ? 0
-    : parseFloat(getComputedStyle(wrap).fontSize) * 8;
-  const availableWidth = wrap.clientWidth - paddingPx;
 
-  // Prevent zoom if already scrollable and won't fit
-  if (!isCentered && nextWidth >= availableWidth) return;
+  const shouldHideFit = isAtTop && isAtFittedZoom && isCentered;
+  if (shouldHideFit === isFitted) return;
 
-  hideLinkHighlights();
-
-  if ((is_mobile__WEBPACK_IMPORTED_MODULE_3__() && scale > MOBILE_SCALE) || scale > BROWSER_SCALE) {
-    wrap.style.overflow = "auto";
-  }
-
-  scale = nextScale;
-  wrap.classList.remove("centered");
-  renderWithCurrentScale();
+  isFitted = shouldHideFit;
+  fitBtn.classList.toggle("visible", !isFitted);
+  fitBtn.classList.toggle("hidden", isFitted);
 };
 
-const zoomOut = (delta) => {
-  if (isMobilePortrait()) return;
-
-  if (scale <= TOO_SMALL_SCALE) {
-    const msg = byId("too-small-message");
-    if (msg) msg.style.display = "block";
-    return;
-  }
-
-  hideLinkHighlights();
-  scale = Math.max(TOO_SMALL_SCALE, scale - delta);
-
-  const wrap = byId("canvas-wrap");
-  if (wrap) wrap.classList.remove("centered");
-
-  renderWithCurrentScale();
-};
-
-// Make the canvas' parent the positioning context for overlays.
 const ensureOverlayParent = () => {
   const canvas = byId("resume-canvas");
   if (!canvas) return null;
@@ -29064,31 +28362,33 @@ const ensureOverlayParent = () => {
 
   const cs = getComputedStyle(parent);
   if (cs.position === "static") parent.style.position = "relative";
+
   return parent;
 };
 
-const renderDocument = async (page, scaleValue) => {
+const renderDocument = async (page, s) => {
+  const canvas = byId("resume-canvas");
+  const wrap = byId("canvas-wrap");
+  if (!canvas || !wrap) return;
+
   if (currentRenderTask) {
     currentRenderTask.cancel();
     currentRenderTask = null;
   }
 
-  const canvas = byId("resume-canvas");
-  const wrap = byId("canvas-wrap");
-  if (!canvas || !wrap) return;
-
   const ctx = canvas.getContext("2d");
 
-  const prevWidth = canvas.offsetWidth || 1;
-  const prevHeight = canvas.offsetHeight || 1;
-  const prevScrollLeft = wrap.scrollLeft;
-  const prevScrollTop = wrap.scrollTop;
-  const prevCenterX = prevScrollLeft + wrap.offsetWidth / 2;
+  // Store previous layout for scroll preservation
+  const prevW = canvas.offsetWidth || 1;
+  const prevH = canvas.offsetHeight || 1;
+  const prevLeft = wrap.scrollLeft;
+  const prevTop = wrap.scrollTop;
+  const prevCenter = prevLeft + wrap.offsetWidth / 2;
 
-  const viewport = page.getViewport({ scale: scaleValue });
+  const viewport = page.getViewport({ scale: s });
 
-  canvas.width = RENDER_RESOLUTION * viewport.width;
-  canvas.height = RENDER_RESOLUTION * viewport.height;
+  canvas.width = viewport.width * RENDER_RESOLUTION;
+  canvas.height = viewport.height * RENDER_RESOLUTION;
   canvas.style.width = `${viewport.width}px`;
   canvas.style.height = `${viewport.height}px`;
 
@@ -29109,64 +28409,172 @@ const renderDocument = async (page, scaleValue) => {
     currentRenderTask = null;
   }
 
-  const widthRatio = viewport.width / prevWidth;
-  const heightRatio = viewport.height / prevHeight;
+  // Scroll preservation
+  wrap.scrollLeft =
+    prevCenter * (viewport.width / prevW) - wrap.offsetWidth / 2;
+  wrap.scrollTop = prevTop * (viewport.height / prevH);
 
-  wrap.scrollLeft = prevCenterX * widthRatio - wrap.offsetWidth / 2;
-  wrap.scrollTop = prevScrollTop * heightRatio;
-
-  requestAnimationFrame(() => {
-    highlightLinks(page, viewport);
-  });
+  requestAnimationFrame(() => highlightLinks(page, viewport));
 };
 
-const highlightLinks = (page, viewport) => {
-  document.querySelectorAll(".pdf-link-highlight").forEach((el) => el.remove());
+const highlightLinks = async (page, viewport) => {
+  clearHighlights();
 
   const canvas = byId("resume-canvas");
   const parent = ensureOverlayParent();
   if (!canvas || !parent) return;
 
-  const parentRect = parent.getBoundingClientRect();
-  const canvasRect = canvas.getBoundingClientRect();
-  const offsetLeft = canvasRect.left - parentRect.left;
-  const offsetTop = canvasRect.top - parentRect.top;
+  try {
+    const annotations = await page.getAnnotations();
 
-  (async () => {
-    try {
-      const annotations = await page.getAnnotations();
+    const parentRect = parent.getBoundingClientRect();
+    const canvasRect = canvas.getBoundingClientRect();
+    const offLeft = canvasRect.left - parentRect.left;
+    const offTop = canvasRect.top - parentRect.top;
 
-      for (const a of annotations) {
-        if (a.subtype !== "Link" || !a.url) continue;
+    for (const a of annotations) {
+      if (a.subtype !== "Link" || !a.url) continue;
 
-        const [x1, y1, x2, y2] = viewport.convertToViewportRectangle(a.rect);
-        const left = Math.min(x1, x2);
-        const top = Math.min(y1, y2);
-        const width = Math.abs(x2 - x1);
-        const height = Math.abs(y2 - y1);
+      const [x1, y1, x2, y2] = viewport.convertToViewportRectangle(a.rect);
+      const left = Math.min(x1, x2);
+      const top = Math.min(y1, y2);
+      const width = Math.abs(x2 - x1);
+      const height = Math.abs(y2 - y1);
 
-        const link = document.createElement("a");
-        link.href = a.url;
-        link.target = "_blank";
-        link.rel = "noopener noreferrer";
-        link.className = "pdf-link-highlight";
-        link.setAttribute("aria-label", `Link to ${a.url}`);
+      const el = document.createElement("a");
+      el.href = a.url;
+      el.target = "_blank";
+      el.rel = "noopener noreferrer";
+      el.className = LINK_HIGHLIGHT_CLASS;
+      el.setAttribute("aria-label", `Link to ${a.url}`);
 
-        link.style.position = "absolute";
-        link.style.left = `${offsetLeft + left}px`;
-        link.style.top = `${offsetTop + top}px`;
-        link.style.width = `${width}px`;
-        link.style.height = `${height}px`;
-        link.style.zIndex = "1";
-        link.style.transition = "opacity 0.2s ease";
-        link.style.opacity = "1";
+      Object.assign(el.style, {
+        position: "absolute",
+        left: `${offLeft + left}px`,
+        top: `${offTop + top}px`,
+        width: `${width}px`,
+        height: `${height}px`,
+        zIndex: 1,
+        transition: "opacity 0.2s ease",
+        opacity: 1,
+      });
 
-        parent.appendChild(link);
-      }
-    } catch (err) {
-      console.error("Highlight links error:", err);
+      parent.appendChild(el);
     }
-  })();
+  } catch (err) {
+    console.error("Highlight link error:", err);
+  }
+};
+
+const renderCurrent = () => {
+  requestAnimationFrame(async () => {
+    try {
+      const page = await getPage1();
+      await renderDocument(page, scale);
+      updateScaleMessages();
+      checkFittedState();
+      updateZoomButtons();
+    } catch (err) {
+      console.error("Render update error:", err);
+    }
+  });
+};
+
+const fit = async () => {
+  const wrap = byId("canvas-wrap");
+  if (!wrap || !pdf) return;
+
+  clearHighlights();
+  wrap.classList.add("centered");
+  wrap.style.removeProperty("overflow");
+
+  try {
+    const page = await getPage1();
+    const viewport = page.getViewport({ scale: 1 });
+
+    const availableW = wrap.clientWidth * 0.99;
+    const availableH = wrap.clientHeight * 0.99;
+
+    const scaleX = availableW / viewport.width;
+    const scaleY = availableH / viewport.height;
+
+    const fitScale = Math.min(scaleX, scaleY);
+    const minAllowed = is_mobile__WEBPACK_IMPORTED_MODULE_3__() ? 0.1 : 0.5;
+
+    scale = Math.max(minAllowed, Math.min(2.0, fitScale));
+    fittedScale = scale;
+
+    await renderDocument(page, scale);
+
+    wrap.scrollTop = 0;
+    wrap.scrollLeft = 0;
+
+    updateScaleMessages();
+    checkFittedState();
+    updateZoomButtons();
+  } catch (err) {
+    console.error("Fit error:", err);
+  }
+};
+
+const zoomIn = async (delta) => {
+  if (isMobilePortrait()) return;
+
+  if (scale >= MAX_SCALE) {
+    const m = byId("too-large-message");
+    if (m) m.style.display = "block";
+    return;
+  }
+
+  const wrap = byId("canvas-wrap");
+  if (!wrap || !pdf) return;
+
+  try {
+    const page = await getPage1();
+    const viewport = page.getViewport({ scale: 1 });
+
+    const next = Math.min(MAX_SCALE, scale + delta);
+    const nextWidth = viewport.width * next;
+
+    const isCentered = wrap.classList.contains("centered");
+    const fontSize = parseFloat(getComputedStyle(wrap).fontSize);
+    const paddingPx = fontSize * (PADDING_REM * 2);
+
+    const scrollbarWidth = isCentered ? SCROLLBAR_WIDTH : 0;
+    const available = wrap.clientWidth - paddingPx - scrollbarWidth;
+
+    if (nextWidth > available) return;
+
+    clearHighlights();
+
+    if ((is_mobile__WEBPACK_IMPORTED_MODULE_3__() && scale > MOBILE_SCALE) || scale > BROWSER_SCALE) {
+      wrap.style.overflow = "auto";
+    }
+
+    scale = next;
+    wrap.classList.remove("centered");
+    renderCurrent();
+  } catch (err) {
+    console.error("Zoom-in error:", err);
+  }
+};
+
+const zoomOut = (delta) => {
+  if (isMobilePortrait()) return;
+
+  if (scale <= MIN_SCALE) {
+    const m = byId("too-small-message");
+    if (m) m.style.display = "block";
+    return;
+  }
+
+  const wrap = byId("canvas-wrap");
+  if (!wrap) return;
+
+  clearHighlights();
+  scale = Math.max(MIN_SCALE, scale - delta);
+  wrap.classList.remove("centered");
+  renderCurrent();
 };
 
 const populateLinksList = async () => {
@@ -29176,38 +28584,39 @@ const populateLinksList = async () => {
     const page = await getPage1();
     const annotations = await page.getAnnotations();
 
-    const linksAreaEl = byId("links-area");
-    const linksCountEl = byId("links-count");
-    if (!linksAreaEl || !linksCountEl) return;
+    const listEl = byId("links-area");
+    const countEl = byId("links-count");
 
-    linksAreaEl.innerHTML = "";
-    const unique = new Set(annotations.filter((a) => a.url).map((a) => a.url));
+    if (!listEl || !countEl) return;
 
-    const count = unique.size;
-    linksCountEl.textContent = String(count);
+    const urls = [
+      ...new Set(annotations.filter((a) => a.url).map((a) => a.url)),
+    ];
+    const count = urls.length;
+
+    listEl.innerHTML = "";
+    listEl.classList.toggle("empty", count === 0);
+    countEl.textContent = String(count);
 
     if (count === 0) {
-      linksAreaEl.classList.add("empty");
-      linksAreaEl.textContent = "No links found in document.";
+      listEl.textContent = "No links found in document.";
       return;
     }
 
-    linksAreaEl.classList.remove("empty");
-
-    unique.forEach((url) => {
+    for (const url of urls) {
       const item = document.createElement("div");
       item.className = "link-item";
 
-      const linkEl = document.createElement("a");
-      linkEl.href = url;
-      linkEl.target = "_blank";
-      linkEl.rel = "noopener noreferrer";
-      linkEl.innerHTML = `<span class="link-icon" aria-hidden="true">↗</span><span>${url}</span>`;
+      const a = document.createElement("a");
+      a.href = url;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      a.innerHTML = `<span class="link-icon">↗</span><span>${url}</span>`;
 
       const copyBtn = document.createElement("button");
       copyBtn.type = "button";
       copyBtn.className = "copy-btn";
-      copyBtn.innerHTML = '<i class="fa-regular fa-copy"></i>';
+      copyBtn.innerHTML = `<i class="fa-regular fa-copy"></i>`;
       copyBtn.setAttribute("aria-label", `Copy ${url}`);
 
       copyBtn.onclick = async () => {
@@ -29224,60 +28633,51 @@ const populateLinksList = async () => {
             copyBtn.innerHTML = '<i class="fa-regular fa-copy"></i>';
             copyBtn.classList.remove("copied");
           }, 2000);
-        } catch (e) {
-          console.error("Copy failed:", e);
+        } catch (err) {
+          console.error("Copy error:", err);
         }
       };
 
-      item.appendChild(linkEl);
+      item.appendChild(a);
       item.appendChild(copyBtn);
-      linksAreaEl.appendChild(item);
-    });
+      listEl.appendChild(item);
+    }
 
-    showLinkHighlights();
+    showHighlights();
   } catch (err) {
-    console.error("Populate links list error:", err);
+    console.error("Link list error:", err);
   }
 };
 
 const showUI = () => {
+  const spinner = byId("loading-spinner");
   const pdfContainer = byId("pdf-container");
-  const loadingSpinner = byId("loading-spinner");
   const buttonArea = byId("button-area");
   const controls = byId("controls");
-  const canvasWrap = byId("canvas-wrap");
+  const wrap = byId("canvas-wrap");
 
-  if (loadingSpinner) {
-    loadingSpinner.classList.add("hidden");
-    setTimeout(() => (loadingSpinner.style.display = "none"), 300);
+  if (spinner) {
+    spinner.classList.add("hidden");
+    setTimeout(() => (spinner.style.display = "none"), 300);
   }
   if (pdfContainer) pdfContainer.classList.add("loaded");
   if (buttonArea) buttonArea.classList.add("visible");
   if (controls) controls.classList.add("visible");
-  if (canvasWrap)
-    canvasWrap.addEventListener("scroll", debounce(checkFittedState, 150));
-};
 
-const toggleAttention = (enable, element = null) => {
-  if (element) {
-    element.classList.toggle("attention", !!enable);
-  } else {
-    for (const el of document.getElementsByClassName("zoom-btn")) {
-      el.classList.toggle("attention", !!enable);
-    }
+  if (wrap) {
+    wrap.addEventListener("scroll", debounce(checkFittedState, 150));
   }
 };
-
 const setupDragScroll = () => {
   const wrap = byId("canvas-wrap");
   if (!wrap) return;
 
-  let pos = { top: 0, left: 0, x: 0, y: 0 };
+  let state = { left: 0, top: 0, x: 0, y: 0 };
 
   const onDown = (e) => {
     wrap.style.cursor = "grabbing";
     wrap.style.userSelect = "none";
-    pos = {
+    state = {
       left: wrap.scrollLeft,
       top: wrap.scrollTop,
       x: e.clientX,
@@ -29288,10 +28688,8 @@ const setupDragScroll = () => {
   };
 
   const onMove = (e) => {
-    const dx = e.clientX - pos.x;
-    const dy = e.clientY - pos.y;
-    wrap.scrollTop = pos.top - dy;
-    wrap.scrollLeft = pos.left - dx;
+    wrap.scrollLeft = state.left - (e.clientX - state.x);
+    wrap.scrollTop = state.top - (e.clientY - state.y);
   };
 
   const onUp = () => {
@@ -29304,28 +28702,31 @@ const setupDragScroll = () => {
   wrap.addEventListener("mousedown", onDown);
 };
 
-const setupCanvasKeyboardNav = () => {
+const setupKeyboardNav = () => {
   const wrap = byId("canvas-wrap");
   if (!wrap) return;
 
+  const STEP = 50;
+
   wrap.addEventListener("keydown", (e) => {
-    const step = 50;
-    switch (e.key) {
+    const { key } = e;
+
+    switch (key) {
       case "ArrowUp":
         e.preventDefault();
-        wrap.scrollTop -= step;
+        wrap.scrollTop -= STEP;
         break;
       case "ArrowDown":
         e.preventDefault();
-        wrap.scrollTop += step;
+        wrap.scrollTop += STEP;
         break;
       case "ArrowLeft":
         e.preventDefault();
-        wrap.scrollLeft -= step;
+        wrap.scrollLeft -= STEP;
         break;
       case "ArrowRight":
         e.preventDefault();
-        wrap.scrollLeft += step;
+        wrap.scrollLeft += STEP;
         break;
       case "Home":
         e.preventDefault();
@@ -29347,35 +28748,22 @@ const setupCanvasKeyboardNav = () => {
   });
 };
 
-const setupInput = () => {
-  // Dialog
-  dialogEl = byId("links-dialog");
-  if (dialogEl) {
-    dialog = new a11y_dialog__WEBPACK_IMPORTED_MODULE_2__["default"](dialogEl);
-    const linksBtn = byId("b4");
-    dialog.on("show", () => linksBtn && linksBtn.classList.add("active"));
-    dialog.on("hide", () => linksBtn && linksBtn.classList.remove("active"));
-    dialog.on("show", populateLinksList);
-  }
-
-  setupDragScroll();
-  setupCanvasKeyboardNav();
-
+const setupKeyboardShortcuts = () => {
   document.addEventListener("keydown", (e) => {
     const t = e.target;
-    const inField = t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA");
-    const linksOpen = isLinksDialogOpen();
-    if (inField || linksOpen) return;
+    const inField = t?.tagName === "INPUT" || t?.tagName === "TEXTAREA";
+
+    if (inField || isLinksDialogOpen()) return;
 
     switch (e.key) {
       case "+":
       case "=":
         e.preventDefault();
-        zoomIn(0.25);
+        zoomIn(SCALE_STEP);
         break;
       case "-":
         e.preventDefault();
-        zoomOut(0.25);
+        zoomOut(SCALE_STEP);
         break;
       case "0":
         e.preventDefault();
@@ -29392,12 +28780,29 @@ const setupInput = () => {
         download();
         break;
       case "Escape":
-        if (isLinksDialogOpen()) {
-          closeLinks();
-        }
+        if (isLinksDialogOpen()) closeLinks();
         break;
     }
   });
+};
+
+const setupDialog = () => {
+  dialogEl = byId("links-dialog");
+  if (!dialogEl) return;
+
+  dialog = new a11y_dialog__WEBPACK_IMPORTED_MODULE_2__["default"](dialogEl);
+  const linksBtn = byId("b4");
+
+  dialog.on("show", () => linksBtn?.classList.add("active"));
+  dialog.on("hide", () => linksBtn?.classList.remove("active"));
+  dialog.on("show", populateLinksList);
+};
+
+const setupInput = () => {
+  setupDialog();
+  setupDragScroll();
+  setupKeyboardNav();
+  setupKeyboardShortcuts();
 
   const mq = window.matchMedia("(max-width: 750px)");
   mq.addEventListener("change", fit);
@@ -29406,49 +28811,34 @@ const setupInput = () => {
 const setupUI = () => {
   setTimeout(showUI, 100);
 
-  // Mobile: only refit on width changes (ignore height from browser chrome)
-  // Desktop: refit on any resize
-  let lastWidth = window.innerWidth;
+  let lastW = window.innerWidth;
+
   window.addEventListener(
     "resize",
     debounce(() => {
-      const currentWidth = window.innerWidth;
-      if (!is_mobile__WEBPACK_IMPORTED_MODULE_3__() || currentWidth !== lastWidth) {
-        lastWidth = currentWidth;
+      const w = window.innerWidth;
+      if (!is_mobile__WEBPACK_IMPORTED_MODULE_3__() || w !== lastW) {
+        lastW = w;
         fit();
       }
     }, 100)
   );
 
-  if (is_mobile__WEBPACK_IMPORTED_MODULE_3__()) {
-    const downloadBtn = byId("b2");
-    toggleAttention(true, downloadBtn);
-    notify(
-      "Hi 📱, for a better experience click the download button or turn landscape.",
-      () => toggleAttention(false, downloadBtn)
-    );
-  }
 };
 
 const openLinks = () => {
   if (!dialogEl || !dialog) return;
-  const open = isLinksDialogOpen();
-  if (open) {
-    dialog.hide();
-    return;
-  }
-  dialog.show();
+  if (isLinksDialogOpen()) dialog.hide();
+  else dialog.show();
 };
 
-const closeLinks = () => {
-  dialog?.hide();
-};
+const closeLinks = () => dialog?.hide();
 
 const download = () => {
   window.open(PDF_URL, "_self");
 };
 
-// For webpack or inline handlers
+// Export global functions
 window.zoomIn = zoomIn;
 window.zoomOut = zoomOut;
 window.fit = fit;
@@ -29458,19 +28848,29 @@ window.download = download;
 
 // Bootstrap
 document.body.classList.add("loaded");
+
+// Redirect mobile users to PDF
+if (is_mobile__WEBPACK_IMPORTED_MODULE_3__()) {
+  window.location.href = PDF_URL;
+}
+
 (async () => {
   try {
+    const loadingTask = pdfjs_dist__WEBPACK_IMPORTED_MODULE_1__.getDocument(PDF_URL);
     pdf = await loadingTask.promise;
-    await getPage1();
+
+    await getPage1(); // ensure page loaded
     await fit();
     setupUI();
     setupInput();
   } catch (err) {
-    console.error("Error loading PDF:", err);
+    console.error("PDF load failure:", err);
+
     const spinner = byId("loading-spinner");
     if (spinner) {
-      spinner.innerHTML =
-        '<p style="color: var(--color-accent);">Failed to load resume. Please refresh the page.</p>';
+      spinner.innerHTML = `<p style="color: var(--color-accent);">
+          Failed to load resume. Please refresh the page.
+         </p>`;
     }
   }
 })();
