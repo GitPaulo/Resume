@@ -16,7 +16,7 @@ const MIN_SCALE = 0.1;
 const MAX_SCALE = 5.0;
 
 // Render resolution and fitting tolerance
-const RENDER_RESOLUTION = 1.6;
+const RENDER_RESOLUTION = 1.67;
 const FIT_EPSILON = 0.01;
 
 // UI layout constants

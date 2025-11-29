@@ -808,7 +808,7 @@ h1 {
   z-index: 10;
 }
 
-.dialog-container:not([aria-hidden="true"])~#canvas-wrap .pdf-link-highlight {
+.dialog-container:not([aria-hidden="true"]) ~ #canvas-wrap .pdf-link-highlight {
   pointer-events: none;
   background: rgba(128, 128, 128, 0.15);
   border-color: rgba(128, 128, 128, 0.3);
@@ -900,7 +900,6 @@ h1 {
 }
 
 @keyframes flicker {
-
   0%,
   100% {
     outline: 2px solid transparent;
@@ -1122,7 +1121,7 @@ a {
   height: 30px;
 }
 
-.copy-btn>* {
+.copy-btn > * {
   filter: grayscale(1);
   line-height: 1;
   display: flex;
@@ -1276,7 +1275,6 @@ a {
 
 /* Hide zoom buttons in mobile portrait mode only */
 @media only screen and (max-width: 750px) and (orientation: portrait) {
-
   #b1,
   #b5 {
     display: none;
@@ -1285,7 +1283,6 @@ a {
 
 /* Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
-
   *,
   *::before,
   *::after {
@@ -1302,7 +1299,6 @@ a {
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
-
   .zoom_btn,
   .github-icon {
     border: 2px solid currentColor;
@@ -28232,7 +28228,7 @@ const MIN_SCALE = 0.1;
 const MAX_SCALE = 5.0;
 
 // Render resolution and fitting tolerance
-const RENDER_RESOLUTION = 1.6;
+const RENDER_RESOLUTION = 1.67;
 const FIT_EPSILON = 0.01;
 
 // UI layout constants
@@ -28823,7 +28819,6 @@ const setupUI = () => {
       }
     }, 100)
   );
-
 };
 
 const openLinks = () => {
